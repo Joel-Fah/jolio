@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h1, h2 {
+        font-family: 'Syne', sans-serif;
+        font-weight: bold;
+    }
+
+    h3, h4 {
+        font-family: 'Syne', sans-serif;
+        font-weight: 600;
+    }
+
+    h5, h6 {
+        font-family: 'Syne', sans-serif;
+        font-weight: normal;
+    }
+
+    html, body {
+        font-family: 'Syne', sans-serif;
+        font-weight: 400;
+        color: #2b2b2b;
+        background: #ECECEC;
+    }
+}

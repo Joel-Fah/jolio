@@ -1,0 +1,59 @@
+{% load tailwind_tags %}
+<!-- This is a base HTML template for a web application. It includes the basic structure of an HTML document with a head and body section. -->
+{% load i18n static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+
+    {# Meta Data #}
+    {% block meta_data %}
+        {% include 'components/meta.html' %}
+    {% endblock %}
+
+    {# Tailwind CSS #}
+    {% tailwind_css %}
+
+    {# AOS CSS #}
+    <link href="{% static 'aos/aos.css' %}" rel="stylesheet">
+
+    {# Fonts: Syne (Google Fonts) #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap" rel="stylesheet">
+
+    {# Extra styles #}
+    {% block extra_styles %}
+
+    {% endblock %}
+</head>
+<body class="">
+{# Header of the page #}
+{% block header %}
+
+{% endblock %}
+
+{# Body of the page #}
+{% block content %}
+
+{% endblock %}
+
+{# Footer of the page #}
+{% block footer %}
+
+{% endblock %}
+
+{# Extra javascript #}
+{#<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>#}
+<script src="{% static 'aos/aos.js' %}"></script>
+<script>
+    AOS.init({
+        once: true,
+    });
+</script>
+{% block javascript %}
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% load static i18n tailwind_tags %}
+
+{# Title of the page #}
+{% block title %}
+    Hello there 👋🏽. Get into Joel Fah's world of code and creativity!
+{% endblock %}
+
+{# Body of the page #}
+{% block content %}
+    <div class="h-screen flex flex-col gap-2 items-center justify-center max-w-screen-sm m-auto text-center">
+        <h2 class="text-2xl font-medium text-center">
+            {% blocktrans %}
+                Is this again another <span class="text-greyColor">(one too many)</span> uhhh... portfolio?
+            {% endblocktrans %}
+        </h2>
+        <p class="text-base text-greyColor">
+            Sometime in the distant, foggy future (or never, who knows), this masterpiece will appear. Anyhow, instead
+            of making money, fixing my life, or touching grass, I’m here… building this. It is what it is. Let's see how
+            it goes.
+        </p>
+    </div>
+{% endblock %}
