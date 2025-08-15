@@ -1,0 +1,28 @@
+{% load i18n static %}
+
+<div id="preloader"
+     data-aos="fade-down"
+     data-aos-anchor-placement="top-center"
+     data-aos-duration="1000"
+     class="flex items-center justify-center h-screen overflow-hidden">
+    <div class="flex flex-col items-start gap-4 max-w-xs m-auto">
+        <div class="flex gap-2">
+            <img src="{% static 'core/images/face.svg' %}" alt="face" class="h-8">
+            <span class="text-xl"><span class="text-greyColor">i_am_</span>joelfah</span>
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+            <p class="text-base text-greyColor">
+                For this long, I've designed user-friendly interfaces, developed web apps, and learned to build mobile
+                apps
+                the flutter way.
+            </p>
+            <hr class="border-primary-300 w-full">
+            <div class="flex gap-2">
+                <small>uix<span class="text-greyColor">y</span></small>
+                <small>flutter<span class="text-greyColor">er</span></small>
+                <small>community<span class="text-greyColor">st</span></small>
+            </div>
+        </div>
+    </div>
+</div>
