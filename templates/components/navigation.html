@@ -1,0 +1,146 @@
+{% load static %}
+
+<!-- Navigation Component -->
+<nav class="fixed inset-0 pointer-events-none z-40">
+    <!-- Right Sidebar -->
+    <div class="absolute right-0 top-0 h-full w-16 pointer-events-auto">
+        <div class="flex flex-col items-center justify-end h-full bg-white shadow-xl">
+            <!-- Navigation Icons -->
+            <div class="flex flex-col gap-6 mb-20">
+                <!-- Home -->
+                <div class="relative group">
+                    <a href="#"
+                       class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                             color="#2b2b2b" fill="none">
+                            <path d="M18 20C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4"
+                                  stroke="currentColor"
+                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4 6.84771V17.1523C4 18.7454 4 19.542 4.4645 20.0976C4.92899 20.6531 5.71415 20.7956 7.28446 21.0806L10.2845 21.6251C12.4701 22.0217 13.563 22.2201 14.2815 21.6215C15 21.023 15 19.9142 15 17.6968V6.30325C15 4.08578 15 2.97704 14.2815 2.37849C13.563 1.77994 12.4701 1.97827 10.2845 2.37495L7.28446 2.91941C5.71415 3.2044 4.92899 3.34689 4.4645 3.90244C4 4.45799 4 5.25457 4 6.84771Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            <path d="M11.5 11.9983L11.5 11.9883" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <!-- Tooltip -->
+                    <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                        <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
+                            Home
+                        </div>
+                        <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
+                    </div>
+                </div>
+
+                <!-- About -->
+                <div class="relative group">
+                    <a href="#"
+                       class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                             color="#2b2b2b" fill="none">
+                            <path d="M22 14V10C22 6.22876 22 4.34315 20.8284 3.17157C19.6569 2 17.7712 2 14 2H12C8.22876 2 6.34315 2 5.17157 3.17157C4 4.34315 4 6.22876 4 10V14C4 17.7712 4 19.6569 5.17157 20.8284C6.34315 22 8.22876 22 12 22H14C17.7712 22 19.6569 22 20.8284 20.8284C22 19.6569 22 17.7712 22 14Z"
+                                  stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M5 6L2 6M5 12H2M5 18H2" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            <path d="M17.5 7L13.5 7M15.5 11H13.5" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 22L9 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                        <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
+                            About
+                        </div>
+                        <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="relative group">
+                    <a href="#"
+                       class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                             color="#2b2b2b" fill="none">
+                            <path d="M5.07579 17C4.08939 4.54502 12.9123 1.0121 19.9734 2.22417C20.2585 6.35185 18.2389 7.89748 14.3926 8.61125C15.1353 9.38731 16.4477 10.3639 16.3061 11.5847C16.2054 12.4534 15.6154 12.8797 14.4355 13.7322C11.8497 15.6004 8.85421 16.7785 5.07579 17Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M4 22C4 15.5 7.84848 12.1818 10.5 10" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </a>
+                    <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                        <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
+                            Projects
+                        </div>
+                        <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="relative group">
+                    <a href="#"
+                       class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                             color="#2b2b2b" fill="none">
+                            <path d="M17 7V11C17 13.7614 14.7614 16 12 16C9.23858 16 7 13.7614 7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7Z"
+                                  stroke="#141B34" stroke-width="1.5"/>
+                            <path d="M17 7H14M17 11H14" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M20 11C20 15.4183 16.4183 19 12 19M12 19C7.58172 19 4 15.4183 4 11M12 19V22M12 22H15M12 22H9"
+                                  stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                        <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
+                            Skills
+                        </div>
+                        <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="absolute bottom-0 left-0 right-0 h-16 pointer-events-auto">
+        <div class="flex items-center justify-between h-full bg-white shadow-xl px-3">
+            <!-- Left section -->
+            <div class="flex items-center gap-4">
+                <span class="text-xs text-greyColor">&copy;2025 - joelfah - All rights reserved.</span>
+                <div class="flex items-center justify-center gap-2 bg-green-100 px-4 py-1.5 rounded-full text-green-600">
+                    <div class="w-1.5 h-1.5 bg-green-500 rounded-full ring ring-offset-2 ring-green-300 animate-pulse"></div>
+                    <span class="text-sm">Available for work</span>
+                </div>
+            </div>
+
+            <!-- Right section -->
+            <div class="flex items-center gap-8">
+                <a href="#" class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                    joelfah2003@gmail.com
+                    <span class="block text-xs text-primary-400">Gmail</span>
+                </a>
+                <a href="#" class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                    Joel-Fah
+                    <span class="block text-xs text-primary-400">GitHub</span>
+                </a>
+                <a href="#" class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                    @FahDejon
+                    <span class="block text-xs text-primary-400">X.com (<span class="line-through">Twitter</span>)</span>
+                </a>
+                <a href="#" class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                    in/joelfah
+                    <span class="block text-xs text-primary-400">LinkedIn</span>
+                </a>
+                <a href="#" class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                    @joelfah
+                    <span class="block text-xs text-primary-400">YouTube</span>
+                </a>
+                <a href="#"
+                       class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                        <img src="{% static 'core/images/face.svg' %}" alt="face" class="h-8">
+                    </a>
+            </div>
+        </div>
+    </div>
+</nav>

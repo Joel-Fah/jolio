@@ -8,16 +8,61 @@
 
 {# Body of the page #}
 {% block content %}
-    <div class="h-screen flex flex-col gap-2 items-center justify-center max-w-screen-sm m-auto text-center">
-        <h2 class="text-2xl font-medium text-center">
-            {% blocktrans %}
-                Is this again another <span class="text-greyColor">(one too many)</span> uhhh... portfolio?
-            {% endblocktrans %}
-        </h2>
-        <p class="text-base text-greyColor">
-            Sometime in the distant, foggy future (or never, who knows), this masterpiece will appear. Anyhow, instead
-            of making money, fixing my life, or touching grass, I’m here… building this. It is what it is. Let's see how
-            it goes.
-        </p>
-    </div>
+    {# Hero Section #}
+    <section id="hero" class="w-[calc(100%-64px)] max-h-[calc(100vh-64px)] grid grid-cols-12 p-8 h-svh">
+        <div class="col-span-4 flex flex-col gap-4 items-start justify-center">
+            {# Top Content #}
+            <div class="flex flex-col gap-4 items-start justify-center">
+                <h1 class="max-w-sm me-auto">Is this another boring & minimalistic portfolio website?</h1>
+                <div class="flex items-center justify-center gap-4 text-greyColor">
+                    <p class="px-4 py-1 border border-greyColor rounded-full">yes, but this one's <span
+                            class="text-primary underline">mine</span></p>
+                    <p>v3.0.1</p>
+                </div>
+            </div>
+
+            {# Bottom Content #}
+            <div id=""
+                 data-aos="fade-up"
+                 data-aos-anchor-placement="top-center"
+                 data-aos-duration="1000"
+                 class="flex-grow flex items-center justify-center">
+                <div class="flex flex-col items-start gap-4 max-w-xs mt-auto">
+                    <div class="flex gap-2">
+                        <img src="{% static 'cogre/images/face.svg' %}" alt="face" class="h-8">
+                        <span class="text-xl"><span class="text-greyColor">i_am_</span>joelfah</span>
+                    </div>
+
+                    <div class="flex flex-col gap-1.5">
+                        <p class="text-base text-greyColor">
+                            For this long, I've designed user-friendly interfaces, developed web apps, and learned to
+                            build mobile
+                            apps
+                            the flutter way.
+                        </p>
+                        <hr class="border-primary-300 w-full">
+                        <div class="flex gap-2">
+                            <small>uix<span class="text-greyColor">y</span></small>
+                            <small>flutter<span class="text-greyColor">er</span></small>
+                            <small>community<span class="text-greyColor">st</span></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-8 flex items-end justify-center w-full">
+            <img src="{% static 'core/images/hero-img.png' %}" alt="a smiling joel fah" class="w-1/2">
+        </div>
+    </section>
+
+    {# About Section #}
+    <section id="about" class="w-[calc(100%-64px)] max-h-[calc(100vh-64px)] grid grid-cols-12 h-svh my-8">
+        {# Top Row #}
+        <div class="col-span-12 flex items-start justify-start p-8">
+            <h2 class="">
+                Dejon Fah Joël Xavier <span class="text-greyColor text-base">(by full name)</span>
+            </h2>
+        </div>
+    </section>
 {% endblock %}

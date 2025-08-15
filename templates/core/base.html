@@ -1,4 +1,3 @@
-{% load tailwind_tags %}
 <!-- This is a base HTML template for a web application. It includes the basic structure of an HTML document with a head and body section. -->
 {% load i18n static tailwind_tags %}
 
@@ -29,28 +28,37 @@
     {% endblock %}
 </head>
 <body class="">
+{# Navigation #}
+{% include 'components/navigation.html' %}
+
 {# Header of the page #}
 {% block header %}
 
 {% endblock %}
 
-{# Body of the page #}
+<main class="">
+    {# Body of the page #}
 {% block content %}
 
 {% endblock %}
+</main>
 
 {# Footer of the page #}
 {% block footer %}
 
 {% endblock %}
 
-{# Extra javascript #}
-{#<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>#}
+{# Javascript #}
 <script src="{% static 'aos/aos.js' %}"></script>
 <script>
     AOS.init({
         once: true,
     });
+</script>
+
+{# Preloader Js #}
+<script>
+
 </script>
 {% block javascript %}
 
