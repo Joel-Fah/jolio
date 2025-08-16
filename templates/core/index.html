@@ -9,10 +9,14 @@
 {# Body of the page #}
 {% block content %}
     {# Hero Section #}
-    <section id="hero" class="w-[calc(100%-64px)] max-h-[calc(100vh-64px)] grid grid-cols-12 p-8 h-svh">
+    <section id="hero" class="w-[calc(100%-64px)] max-h-[calc(100vh-64px)] h-svh grid grid-cols-12 p-8">
         <div class="col-span-4 flex flex-col gap-4 items-start justify-center">
             {# Top Content #}
-            <div class="flex flex-col gap-4 items-start justify-center">
+            <div
+                    data-aos="fade-up"
+                    data-aos-anchor-placement="top-center"
+                    data-aos-duration="1000"
+                    class="flex flex-col gap-4 items-start justify-center">
                 <h1 class="max-w-sm me-auto">Is this another boring & minimalistic portfolio website?</h1>
                 <div class="flex items-center justify-center gap-4 text-greyColor">
                     <p class="px-4 py-1 border border-greyColor rounded-full">yes, but this one's <span
@@ -26,10 +30,11 @@
                  data-aos="fade-up"
                  data-aos-anchor-placement="top-center"
                  data-aos-duration="1000"
+                 data-aos-delay="900"
                  class="flex-grow flex items-center justify-center">
                 <div class="flex flex-col items-start gap-4 max-w-xs mt-auto">
                     <div class="flex gap-2">
-                        <img src="{% static 'cogre/images/face.svg' %}" alt="face" class="h-8">
+                        <img src="{% static 'core/images/face.svg' %}" alt="face" class="h-8">
                         <span class="text-xl"><span class="text-greyColor">i_am_</span>joelfah</span>
                     </div>
 
@@ -51,18 +56,451 @@
             </div>
         </div>
 
-        <div class="col-span-8 flex items-end justify-center w-full">
+        <div data-aos="fade-up"
+             data-aos-anchor-placement="top-center"
+             data-aos-duration="1000"
+             data-aos-delay="500"
+             class="col-span-8 flex items-end justify-center w-full">
             <img src="{% static 'core/images/hero-img.png' %}" alt="a smiling joel fah" class="w-1/2">
         </div>
     </section>
 
     {# About Section #}
-    <section id="about" class="w-[calc(100%-64px)] max-h-[calc(100vh-64px)] grid grid-cols-12 h-svh my-8">
+    <section id="about" class="w-[calc(100%-64px)] grid grid-cols-12 my-8">
         {# Top Row #}
-        <div class="col-span-12 flex items-start justify-start p-8">
-            <h2 class="">
-                Dejon Fah Joël Xavier <span class="text-greyColor text-base">(by full name)</span>
-            </h2>
+        <div class="col-span-12 flex flex-col items-start justify-start gap-8">
+            <div data-aos="fade-up"
+                 data-aos-anchor-placement="top-center"
+                 data-aos-duration="1000"
+                 data-aos-delay="100"
+                 class="flex flex-col items-start gap-4 p-8">
+                <h2 class="">
+                    Dejon Fah Joël Xavier <span class="text-greyColor text-base">(by birth & full name)</span>
+                </h2>
+
+                {# Random Facts #}
+                <div class="flex items-start justify-center gap-4 text-greyColor overflow-auto">
+                    {# Nationality #}
+                    <div class="flex items-center justify-center gap-2 border border-greyColor px-4 py-1.5 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                             class="size-5"
+                             fill="none">
+                            <path d="M4 7L4 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M11.7576 3.90865C8.45236 2.22497 5.85125 3.21144 4.55426 4.2192C4.32048 4.40085 4.20358 4.49167 4.10179 4.69967C4 4.90767 4 5.10138 4 5.4888V14.7319C4.9697 13.6342 7.87879 11.9328 11.7576 13.9086C15.224 15.6744 18.1741 14.9424 19.5697 14.1795C19.7633 14.0737 19.8601 14.0207 19.9301 13.9028C20 13.7849 20 13.6569 20 13.4009V5.87389C20 5.04538 20 4.63113 19.8027 4.48106C19.6053 4.33099 19.1436 4.459 18.2202 4.71504C16.64 5.15319 14.3423 5.22532 11.7576 3.90865Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                        <span class="text-sm">Cameroonian</span>
+                    </div>
+
+                    {# Age #}
+                    <div class="flex items-center justify-center gap-2 border border-greyColor px-4 py-1.5 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                             class="size-5"
+                             fill="none">
+                            <path d="M13.5 4.5C13.5 5.32843 12.8284 6 12 6C11.1716 6 10.5 5.32843 10.5 4.5C10.5 3.67157 12 2 12 2C12 2 13.5 3.67157 13.5 4.5Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+                            <path d="M12 6V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M17.6667 14C19.2315 14 20.5 12.8807 20.5 11.5C20.5 10.1193 19.2315 9 17.6667 9H6.33333C4.76853 9 3.5 10.1193 3.5 11.5C3.5 12.8807 4.76853 14 6.33333 14C7.70408 14 8.90415 13.1411 9.16667 12C9.42919 13.1411 10.6293 14 12 14C13.3707 14 14.5708 13.1411 14.8333 12C15.0959 13.1411 16.2959 14 17.6667 14Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+                            <path d="M5 14L5.52089 16.5796C6.04532 19.1768 6.30754 20.4754 7.19608 21.2377C8.08462 22 9.33608 22 11.839 22H12.161C14.6639 22 15.9154 22 16.8039 21.2377C17.6925 20.4754 17.9547 19.1768 18.4791 16.5796L19 14"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                        <span class="text-sm">21 yo</span>
+                    </div>
+
+                    {# Marital #}
+                    <div class="flex items-center justify-center gap-2 border border-greyColor px-4 py-1.5 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                             class="size-5"
+                             fill="none">
+                            <path d="M10.4107 19.9677C7.58942 17.858 2 13.0348 2 8.69444C2 5.82563 4.10526 3.5 7 3.5C8.5 3.5 10 4 12 6C14 4 15.5 3.5 17 3.5C19.8947 3.5 22 5.82563 22 8.69444C22 13.0348 16.4106 17.858 13.5893 19.9677C12.6399 20.6776 11.3601 20.6776 10.4107 19.9677Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                        <span class="text-sm">Single</span>
+                    </div>
+
+                    {# Gender #}
+                    <div class="flex items-center justify-center gap-2 border border-greyColor px-4 py-1.5 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                             class="size-5"
+                             fill="none">
+                            <path d="M21 9C21 12.3137 18.3137 15 15 15C11.6863 15 9 12.3137 9 9C9 5.68629 11.6863 3 15 3C18.3137 3 21 5.68629 21 9Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M3 15V17C3 18.8856 3 19.8284 3.58579 20.4142C4.17157 21 5.11438 21 7 21H9M4 20L10.5 13.5"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                        <span class="text-sm">Male</span>
+                    </div>
+
+                    {# Religion #}
+                    <div class="flex items-center justify-center gap-2 border border-greyColor px-4 py-1.5 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                             class="size-5"
+                             fill="none">
+                            <path d="M12 2V6M14 4L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M8.50122 8.79902L12 6L15.4988 8.79902C16.7171 9.77367 17 10.3623 17 11.9225V22H7V11.9225C7 10.3623 7.28291 9.77367 8.50122 8.79902Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M17 12L18.7889 12.8944C19.8647 13.4323 20.4026 13.7013 20.7013 14.1846C21 14.6679 21 15.2693 21 16.4721V20C21 20.9428 21 21.4142 20.7071 21.7071C20.4142 22 19.9428 22 19 22H17"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M7 12L5.21114 12.8944C4.13531 13.4323 3.5974 13.7013 3.2987 14.1846C3 14.6679 3 15.2693 3 16.4721V20C3 20.9428 3 21.4142 3.29289 21.7071C3.58579 22 4.05719 22 5 22H7"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M10 22V18C10 16.8954 10.8954 16 12 16C13.1046 16 14 16.8954 14 18V22"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M12.008 11L11.999 11" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                        <span class="text-sm">Christian</span>
+                    </div>
+
+                    {# Driving #}
+                    <div class="flex items-center justify-center gap-2 border border-greyColor px-4 py-1.5 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                             class="size-5"
+                             fill="none">
+                            <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M19 14C16.5 14.5 14.5 16.5 14 19" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M5 14C7.5 14.5 9.5 16.5 10 19" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M19 11C16.8847 10.3593 14.5097 10 12 10C9.49033 10 7.11528 10.3593 5 11"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M12.009 14H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                        <span class="text-sm">Can drive (B)</span>
+                    </div>
+
+                    {# Voting #}
+                    <div class="flex items-center justify-center gap-2 border border-greyColor px-4 py-1.5 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                             class="size-5"
+                             fill="none">
+                            <path d="M12 22C11.1818 22 10.4002 21.6646 8.83693 20.9939C4.94564 19.3243 3 18.4895 3 17.0853L3 7.7475M12 22C12.8182 22 13.5998 21.6646 15.1631 20.9939C19.0544 19.3243 21 18.4895 21 17.0853V7.7475M12 22L12 12.1707M21 7.7475C21 8.35125 20.1984 8.7325 18.5953 9.495L15.6741 10.8844C13.8712 11.7419 12.9697 12.1707 12 12.1707M21 7.7475C21 7.14376 20.1984 6.7625 18.5953 6M3 7.7475C3 8.35125 3.80157 8.7325 5.40472 9.495L8.32592 10.8844C10.1288 11.7419 11.0303 12.1707 12 12.1707M3 7.7475C3 7.14376 3.80157 6.7625 5.40472 6M6.33203 13.311L8.32591 14.2594"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M12 2V4M16 3L14.5 5M8 3L9.5 5" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round"></path>
+                        </svg>
+                        <span class="text-sm">Can vote</span>
+                    </div>
+
+                    {# More #}
+                    <div class="flex items-center justify-center gap-2 border border-greyColor px-4 py-1.5 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                             class="size-5"
+                             fill="none">
+                            <path d="M11.9959 12H12.0049" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M17.9998 12H18.0088" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M5.99981 12H6.00879" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+
+                    {# Allergy #}
+                    <div class="flex items-center justify-center gap-2 border border-greyColor px-4 py-1.5 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                             class="size-5"
+                             fill="none">
+                            <path d="M6.00781 12L5.99883 12" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M11 16.0418C11.4635 16.1947 11.9076 16.3708 12.3099 16.6525M12.3099 16.6525C13.3507 17.3811 14 18.5764 14 19.8845C14 19.9484 13.9465 20.0003 13.8819 20C10.9648 19.9871 9.65844 19.4932 9.1094 18.6782L8 16.8568C5.50848 16.3537 3.21828 14.7625 2 12.0833C5 5.48589 14.5 5.48589 17.5 12.0833M12.3099 16.6525C14.4801 15.9922 16.4151 14.4692 17.5 12.0833M12.3099 7.5142C13.3507 6.78564 14 5.59024 14 4.28218C14 3.4556 9.69172 4.62406 9.1094 5.48846L8 7.30982M17.5 12.0833C17.8333 11.4236 19.6 9.11447 22 9.11447C21.1667 9.93915 19.8 13.0729 21 15.0522C19.8 15.0522 18 12.7431 17.5 12.0833Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                        <span class="text-sm">Allergic to fish</span>
+                    </div>
+                </div>
+            </div>
+
+            {# Middle Row #}
+            <div class="grid grid-cols-12 w-full gap-4 p-8 pe-0">
+                {# Remix of code and design #}
+                <div data-aos="fade-up"
+                     data-aos-anchor-placement="top-center"
+                     data-aos-duration="1000"
+                     data-aos-delay="100"
+                     class="col-span-4 flex items-start justify-start gap-4">
+                    <div class="bg-white p-2 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+                            <path d="M4 8C4 5.17157 4 3.75736 5.00421 2.87868C6.00841 2 7.62465 2 10.8571 2H13.1429C16.3753 2 17.9916 2 18.9958 2.87868C20 3.75736 20 5.17157 20 8V17H4V8Z"
+                                  stroke="#141B34" stroke-width="1.5" stroke-linejoin="round"/>
+                            <path d="M3 17H21" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M10.6987 5.56588C11.9289 5.38957 13.9674 5.4601 12.2803 7.15266C10.1715 9.26836 7.00837 14.0289 10.6987 12.4421C14.3891 10.8554 15.9709 11.9132 14.3893 13.5"
+                                  stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 17V21" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M5 22L8 17" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M19 22L16 17" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="flex flex-col items-start justify-start gap-2 mt-2">
+                        <h3 class="stroked-text">A remix of code and design</h3>
+                        <p class="2xl:text-xl">
+                            Over the years, I’ve become more proficient with Flutter, gained solid experience, and
+                            sharpened my design skills. I sharpened my ui/ux design skills, making Figma my trusty
+                            partner. Together, we’ve mastered pixels, turning ideas into polished, functional designs.
+                            It takes time, data, and effort, but the results are always worth it.
+                        </p>
+                        <blockquote class="text-sm 2xl:text-base text-greyColor italic">
+                            Love what you do and pour your best into it—let the world's distractions inspire, not
+                            derail, your focus.
+                        </blockquote>
+                    </div>
+                </div>
+
+                {# Sustainable being #}
+                <div data-aos="fade-up"
+                     data-aos-anchor-placement="top-center"
+                     data-aos-duration="1000"
+                     data-aos-delay="300"
+                     class="col-span-4 flex items-start justify-start gap-4">
+                    <div class="bg-white p-2 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+                            <path d="M20 13V8H15" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            <path d="M20 8L15 13C14.1174 13.8826 13.6762 14.3238 13.1346 14.3726C13.045 14.3807 12.955 14.3807 12.8654 14.3726C12.3238 14.3238 11.8826 13.8826 11 13C10.1174 12.1174 9.67615 11.6762 9.13457 11.6274C9.04504 11.6193 8.95496 11.6193 8.86543 11.6274C8.32385 11.6762 7.88256 12.1174 7 13L4 16"
+                                  stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="flex flex-col items-start justify-start gap-2 mt-2">
+                        <h3 class="stroked-text">A sustainable being</h3>
+                        <p class="2xl:text-xl">
+                            I’ve also deepened my involvement in communities, not just participating but organizing
+                            events and sharing knowledge; taking and giving back to the community.
+                        </p>
+                        <blockquote class="text-sm 2xl:text-base text-greyColor italic">
+                            Step into communities not just to belong, but to grow—learn from their strength, act with
+                            purpose, and one day, give back more than you ever took.
+                        </blockquote>
+                    </div>
+                </div>
+
+                {# Image Placeholder #}
+                <div data-aos="fade-up"
+                     data-aos-anchor-placement="top-center"
+                     data-aos-duration="1000"
+                     data-aos-delay="500"
+                     class="col-span-4 flex items-start justify-start gap-4 bg-white w-full h-full"></div>
+            </div>
+
+            {# Bottom Row #}
+            <div class="grid grid-cols-12 w-full gap-4 p-8 ps-0">
+                {# Image Placeholder #}
+                <div data-aos="fade-up"
+                     data-aos-anchor-placement="top-center"
+                     data-aos-duration="1000"
+                     data-aos-delay="100"
+                     class="col-span-6 flex items-start justify-start gap-4 bg-white w-full h-full"></div>
+
+                {# What then #}
+                <div data-aos="fade-up"
+                     data-aos-anchor-placement="top-center"
+                     data-aos-duration="1000"
+                     data-aos-delay="300"
+                     class="col-start-8 col-span-4 flex items-start justify-start gap-4">
+                    <div class="bg-white p-2 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+                            <path d="M17.5 17.5L21.5 21.5" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            <path d="M5.97185 3.79282L9.31786 4.92059C9.78049 5.08073 10.4825 4.97602 10.88 4.69283L13.2273 3.01883C14.729 1.949 15.972 2.58706 15.9733 4.44162L15.9862 7.58112C15.9884 8.11281 16.3582 8.7726 16.8087 9.05928L19.207 10.5629C21.104 11.7544 20.8884 13.1649 18.7263 13.713L15.7172 14.4729C15.1735 14.6099 14.6126 15.1709 14.4693 15.721L13.7096 18.7307C13.1679 20.8868 11.7449 21.1025 10.5601 19.2114L9.0567 16.8127C8.77007 16.3621 8.1104 15.9923 7.57881 15.9901L4.43989 15.9772C2.59198 15.9696 1.94773 14.7327 3.01737 13.2306L4.69105 10.8829C4.96789 10.4917 5.07258 9.78951 4.91247 9.3268L3.78491 5.98017C3.17623 4.16109 4.15941 3.17773 5.97185 3.79282Z"
+                                  stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="flex flex-col items-start justify-start gap-2 mt-2">
+                        <h3 class="stroked-text">What then?</h3>
+                        <p class="2xl:text-xl">
+                            Good thing I’m still young; I keep pushing, and evolving. With every effort, I’m becoming a
+                            clearer pixel, a better resolution of myself—one that stands out and is noticed from afar.
+                        </p>
+                        <blockquote class="text-sm 2xl:text-base text-greyColor italic">
+                            No matter what, I’ll always find a way to make people draw their best smile line... I find
+                            joy in doing that.
+                        </blockquote>
+                        <h4 class="mt-2">Yours genuinely!</h4>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+
+    {# Projects Section #}
+    <section id="projects" class="relative w-[calc(100%-64px)] my-8">
+        <div class="flex flex-col items-center justify-center w-full gap-8">
+
+            {# Top Row #}
+            <div data-aos="fade-up"
+                 data-aos-anchor-placement="top-center"
+                 data-aos-duration="1000"
+                 data-aos-delay="100"
+                 class="flex flex-col items-center justify-center w-full max-w-screen-lg m-auto text-center gap-4 p-8">
+                <h2>
+                    So, what was I good at?
+                </h2>
+                <p class="text-greyColor">
+                    Here’s a collection of things I’ve worked on — some I’m super proud of, others taught me lessons I
+                    didn’t know I needed. Each project is a step forward in my journey, and honestly, the process has
+                    been just as exciting as the results.
+                </p>
+                <div class="flex items-center justify-center gap-4">
+                    <a href=""
+                       class="flex items-center justify-center gap-2 px-4 py-1.5 text-primary-500 border border-transparent rounded-xl hover:bg-primary-50 default-transition">
+                        Take a look around
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+                            <path d="M13 13L6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                            <path d="M15.541 17.9172L14.2992 17.8043C12.2873 17.6214 11.2814 17.53 11.0447 16.8761C10.8079 16.2223 11.5222 15.508 12.9507 14.0795L14.0795 12.9507C15.508 11.5222 16.2223 10.8079 16.8761 11.0447C17.53 11.2814 17.6214 12.2873 17.8043 14.2992L17.9172 15.541C18.0273 16.7523 18.0824 17.358 17.7202 17.7202C17.358 18.0824 16.7523 18.0273 15.541 17.9172Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                    </a>
+
+                    <a href=""
+                       class="flex items-center justify-center gap-2 px-4 py-1.5 border border-primary rounded-xl bg-white hover:bg-whiteColor default-transition">
+                        Go to dedicated space
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+                            <path d="M12.9997 11L5.99969 18" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M15.5407 6.08278L14.2989 6.19567C12.287 6.37857 11.2811 6.47002 11.0444 7.12388C10.8076 7.77774 11.5219 8.49198 12.9504 9.92046L14.0792 11.0493C15.5077 12.4778 16.222 13.1921 16.8758 12.9553C17.5297 12.7186 17.6211 11.7127 17.804 9.70078L17.9169 8.45902C18.027 7.24766 18.0821 6.64198 17.7199 6.27979C17.3577 5.9176 16.752 5.97266 15.5407 6.08278Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            {# Project Showcase #}
+            <div data-aos="fade-up"
+                 data-aos-anchor-placement="top-center"
+                 data-aos-duration="1000"
+                 data-aos-delay="300"
+                 class="flex flex-col gap-2 w-full">
+                <a href="" class="h-[75vh] aspect-16 bg-white focus:border-none">
+                    <img src="{% static 'core/images/arigato.png' %}" alt=""
+                         class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 default-transition">
+                </a>
+                <div class="flex items-center justify-between p-8">
+                    <div class="w-full flex flex-col gap-1">
+                        <h4 class="stroked-text">Devfest Yaounde 2025</h4>
+                        <div class="flex items-center justify-start gap-2 text-greyColor">
+                            <p>Octobre 2025</p>
+                            <div class="size-1 bg-greyColor rounded-full"></div>
+                            <p>2min read</p>
+                            <div class="size-1 bg-greyColor rounded-full"></div>
+                            <p>3 weeks ago</p>
+                        </div>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+                        <path d="M12.9997 11L5.99969 18" stroke="currentColor" stroke-width="1.5"
+                              stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M15.5407 6.08278L14.2989 6.19567C12.287 6.37857 11.2811 6.47002 11.0444 7.12388C10.8076 7.77774 11.5219 8.49198 12.9504 9.92046L14.0792 11.0493C15.5077 12.4778 16.222 13.1921 16.8758 12.9553C17.5297 12.7186 17.6211 11.7127 17.804 9.70078L17.9169 8.45902C18.027 7.24766 18.0821 6.64198 17.7199 6.27979C17.3577 5.9176 16.752 5.97266 15.5407 6.08278Z"
+                              stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-12 gap-4 items-start justify-center p-8">
+                <div
+                        data-aos="fade-up"
+                        data-aos-anchor-placement="top-center"
+                        data-aos-duration="1000"
+                        data-aos-delay="200"
+                        class="col-span-4 w-full min-h-48 max-h-56 aspect-16 bg-primary-300 self-end"></div>
+
+                <div data-aos="fade-up"
+                     data-aos-anchor-placement="top-center"
+                     data-aos-duration="1000"
+                     data-aos-delay="100"
+                     class="col-span-4 m-auto max-w-screen-lg min-h-64 2xl:min-h-fit text-center p-4">
+                    <h2>
+                        But the idea is to convince you. Here are some more...
+                    </h2>
+                    <p class="text-greyColor">
+                        I approach my projects with the belief that creativity is built through persistence, not
+                        effortless shortcuts. By leaning into challenges and problem-solving, I’m able to develop
+                        innovative, well-crafted solutions that stand out.
+                    </p>
+                </div>
+
+                <div data-aos="fade-up"
+                     data-aos-anchor-placement="top-center"
+                     data-aos-duration="1000"
+                     data-aos-delay="300"
+                     class="col-span-4 w-full min-h-48 max-h-56 aspect-16 bg-primary-300 self-end"></div>
+
+                <div data-aos="fade-up"
+                     data-aos-anchor-placement="top-center"
+                     data-aos-duration="1000"
+                     data-aos-delay="100"
+                     class="col-span-4 w-full min-h-48 max-h-56 aspect-16 bg-primary-300"></div>
+
+                <div
+                        data-aos="fade-up"
+                        data-aos-anchor-placement="top-center"
+                        data-aos-duration="1000"
+                        data-aos-delay="200"
+                        class="col-span-4 w-full h-full min-h-80 flex flex-col gap-1.5 items-center justify-center p-8 bg-primary-100 text-center rounded-3xl border-2 border-dashed border-primary-400">
+                    <small class="text-greyColor">Guess what?</small>
+                    <p>
+                        There's more to this section than these.<br>Consider dropping an eye!
+                    </p>
+                    <a href=""
+                       class="flex items-center justify-center gap-2 px-4 py-1.5 border border-primary rounded-xl bg-white hover:bg-whiteColor default-transition">
+                        Go to dedicated space
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+                            <path d="M12.9997 11L5.99969 18" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M15.5407 6.08278L14.2989 6.19567C12.287 6.37857 11.2811 6.47002 11.0444 7.12388C10.8076 7.77774 11.5219 8.49198 12.9504 9.92046L14.0792 11.0493C15.5077 12.4778 16.222 13.1921 16.8758 12.9553C17.5297 12.7186 17.6211 11.7127 17.804 9.70078L17.9169 8.45902C18.027 7.24766 18.0821 6.64198 17.7199 6.27979C17.3577 5.9176 16.752 5.97266 15.5407 6.08278Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <div data-aos="fade-up"
+                     data-aos-anchor-placement="top-center"
+                     data-aos-duration="1000"
+                     data-aos-delay="300"
+                     class="col-span-4 w-full min-h-48 max-h-56 aspect-16 bg-primary-300"></div>
+            </div>
+        </div>
+    </section>
+
+    {# Footer Section #}
+    <footer class="w-full bg-white mb-16">
+        <div class="flex flex-col p-8 items-center justify-center gap-4 max-w-screen-md m-auto text-center min-h-56">
+            <h2>
+                Guess I was convincing?!<br>
+                Let's get in touch henceforth.
+            </h2>
+            <p class="text-greyColor">
+                I am introvert, but I am social. Special in my kind &
+                <span class="text-primary underline">available to make magic</span>.
+            </p>
+        </div>
+    </footer>
 {% endblock %}
