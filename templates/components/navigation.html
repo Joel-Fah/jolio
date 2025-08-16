@@ -3,8 +3,12 @@
 <!-- Navigation Component -->
 <nav class="fixed inset-0 pointer-events-none z-40">
     <!-- Right Sidebar -->
-    <div class="absolute right-0 top-0 h-full w-16 pointer-events-auto">
-        <div class="flex flex-col items-center justify-end h-full bg-white shadow-xl">
+    <div data-aos="fade-left"
+         data-aos-anchor-placement="top-center"
+         data-aos-duration="1000"
+         data-aos-delay="100"
+         class="absolute right-0 top-0 h-full w-16 pointer-events-auto">
+        <div class="flex flex-col items-center justify-end h-full bg-white">
             <!-- Navigation Icons -->
             <div class="flex flex-col gap-6 mb-20">
                 <!-- Home -->
@@ -26,7 +30,7 @@
                     <!-- Tooltip -->
                     <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                         <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
-                            Home
+                            <span class="text-primary-300 italic">not my</span> home
                         </div>
                         <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
                     </div>
@@ -51,7 +55,7 @@
                     </a>
                     <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                         <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
-                            About
+                            <span class="text-primary-300 italic">did some</span> projects
                         </div>
                         <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
                     </div>
@@ -72,7 +76,7 @@
                     </a>
                     <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                         <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
-                            Projects
+                            <span class="text-primary-300 italic">involved into</span> this & that
                         </div>
                         <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
                     </div>
@@ -93,7 +97,7 @@
                     </a>
                     <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                         <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
-                            Skills
+                            <span class="text-primary-300 italic">talking of</span> communities
                         </div>
                         <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
                     </div>
@@ -104,11 +108,20 @@
 
     <!-- Bottom Navigation Bar -->
     <div class="absolute bottom-0 left-0 right-0 h-16 pointer-events-auto">
-        <div class="flex items-center justify-between h-full bg-white shadow-xl px-3">
+        <div class="flex items-center justify-between h-full bg-white px-3">
             <!-- Left section -->
             <div class="flex items-center gap-4">
-                <span class="text-xs text-greyColor">&copy;2025 - joelfah - All rights reserved.</span>
-                <div class="flex items-center justify-center gap-2 bg-green-100 px-4 py-1.5 rounded-full text-green-600">
+                <span
+                        data-aos="fade-up"
+                        data-aos-anchor-placement="top-center"
+                        data-aos-duration="1000"
+                        data-aos-delay="800"
+                        class="text-xs text-greyColor">&copy;2025 - joelfah - All rights reserved.</span>
+                <div data-aos="fade-up"
+                     data-aos-anchor-placement="top-center"
+                     data-aos-duration="1000"
+                     data-aos-delay="700"
+                     class="flex items-center justify-center gap-2 bg-green-100 px-4 py-1.5 rounded-full text-green-600">
                     <div class="w-1.5 h-1.5 bg-green-500 rounded-full ring ring-offset-2 ring-green-300 animate-pulse"></div>
                     <span class="text-sm">Available for work</span>
                 </div>
@@ -116,30 +129,60 @@
 
             <!-- Right section -->
             <div class="flex items-center gap-8">
-                <a href="#" class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                <a href="#"
+                   data-aos="fade-up"
+                   data-aos-anchor-placement="top-center"
+                   data-aos-duration="1000"
+                   data-aos-delay="600"
+                   class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
                     joelfah2003@gmail.com
                     <span class="block text-xs text-primary-400">Gmail</span>
                 </a>
-                <a href="#" class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                <a href="#"
+                   data-aos="fade-up"
+                   data-aos-anchor-placement="top-center"
+                   data-aos-duration="1000"
+                   data-aos-delay="500"
+                   class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
                     Joel-Fah
                     <span class="block text-xs text-primary-400">GitHub</span>
                 </a>
-                <a href="#" class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                <a href="#"
+                   data-aos="fade-up"
+                   data-aos-anchor-placement="top-center"
+                   data-aos-duration="1000"
+                   data-aos-delay="400"
+                   class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
                     @FahDejon
-                    <span class="block text-xs text-primary-400">X.com (<span class="line-through">Twitter</span>)</span>
+                    <span class="block text-xs text-primary-400">X.com (<span
+                            class="line-through">Twitter</span>)</span>
                 </a>
-                <a href="#" class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                <a href="#"
+                   data-aos="fade-up"
+                   data-aos-anchor-placement="top-center"
+                   data-aos-duration="1000"
+                   data-aos-delay="300"
+                   class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
                     in/joelfah
                     <span class="block text-xs text-primary-400">LinkedIn</span>
                 </a>
-                <a href="#" class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                <a href="#"
+                   data-aos="fade-up"
+                   data-aos-anchor-placement="top-center"
+                   data-aos-duration="1000"
+                   data-aos-delay="200"
+                   class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
                     @joelfah
                     <span class="block text-xs text-primary-400">YouTube</span>
                 </a>
                 <a href="#"
-                       class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
-                        <img src="{% static 'core/images/face.svg' %}" alt="face" class="h-8">
-                    </a>
+                   data-aos="fade-up"
+                   data-aos-anchor-placement="top-center"
+                   data-aos-duration="1000"
+                   data-aos-delay="100"
+                   class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                    <img src="{% static 'core/images/face.svg' %}" alt="face" class="h-8">
+                </a>
             </div>
         </div>
     </div>
