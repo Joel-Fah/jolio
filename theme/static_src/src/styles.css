@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+    .title {
+        font-family: 'Syne', sans-serif;
+        font-size: 3rem;
+        line-height: 3.5rem;
+    }
+
     h1, h2 {
         font-family: 'Syne', sans-serif;
         font-size: 2.5rem;

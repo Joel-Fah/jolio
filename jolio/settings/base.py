@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from shutil import which
+from django.templatetags.static import static
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -20,6 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # Application definition
 
 INSTALLED_APPS = [
+    # Custom admin UI
+    'unfold',
+    'unfold.contrib.forms',
+
+    # Default Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,3 +125,49 @@ NPM_BIN_PATH = which('npm')
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+# Unfold settings
+UNFOLD = {
+    'SITE_TITLE': "Joel Fah's Private Space",
+    'SITE_HEADER': 'Control Center of Chaos',
+    'SITE_SUBHEADER': 'Dashboard of Dubious Decisions',
+    'SITE_ICON': lambda request: static("core/images/face.svg"),
+    'SITE_FAVICONS': [
+        {
+            'rel': 'icon',
+            'sizes': '32x32',
+            'type': 'image/svg+xml',
+            'href': lambda request: static('core/images/face.svg'),
+        },
+    ],
+    'THEME': 'light',
+    'BORDER_RADIUS': "8px",
+    'COLORS': {
+        'base': {
+            50: '246,246,246',
+            100: '231,231,231',
+            200: '209,209,209',
+            300: '176,176,176',
+            400: '136,136,136',
+            500: '109,109,109',
+            600: '93,93,93',
+            700: '79,79,79',
+            800: '69,69,69',
+            900: '61,61,61',
+            950: '43,43,43',
+        },
+        'primary': {
+            50: '235,241,255',
+            100: '219,228,255',
+            200: '190,204,255',
+            300: '151,170,255',
+            400: '110,123,255',
+            500: '77,79,255',
+            600: '47,32,254',
+            700: '47,32,254',
+            800: '41,30,181',
+            900: '38,33,142',
+            950: '24,19,83',
+        }
+    }
+}

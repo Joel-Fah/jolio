@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
-{% load static i18n tailwind_tags %}
+{% load static i18n %}
+{% load tailwind_tags get_month_year %}
 
 {# Title of the page #}
 {% block title %}
@@ -349,6 +350,8 @@
 
     {# Projects Section #}
     <section id="projects" class="relative w-[calc(100%-64px)] my-8">
+        {% url 'core:projects' as projects_url %}
+
         <div class="flex flex-col items-center justify-center w-full gap-8">
 
             {# Top Row #}
@@ -366,141 +369,135 @@
                     been just as exciting as the results.
                 </p>
                 <div class="flex items-center justify-center gap-4">
-                    <a href=""
-                       class="flex items-center justify-center gap-2 px-4 py-1.5 text-primary-500 border border-transparent rounded-xl hover:bg-primary-50 default-transition">
-                        Take a look around
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
-                            <path d="M13 13L6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                  stroke-linejoin="round"></path>
-                            <path d="M15.541 17.9172L14.2992 17.8043C12.2873 17.6214 11.2814 17.53 11.0447 16.8761C10.8079 16.2223 11.5222 15.508 12.9507 14.0795L14.0795 12.9507C15.508 11.5222 16.2223 10.8079 16.8761 11.0447C17.53 11.2814 17.6214 12.2873 17.8043 14.2992L17.9172 15.541C18.0273 16.7523 18.0824 17.358 17.7202 17.7202C17.358 18.0824 16.7523 18.0273 15.541 17.9172Z"
-                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                  stroke-linejoin="round"></path>
-                        </svg>
-                    </a>
-
-                    <a href=""
-                       class="flex items-center justify-center gap-2 px-4 py-1.5 border border-primary rounded-xl bg-white hover:bg-whiteColor default-transition">
-                        Go to dedicated space
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
-                            <path d="M12.9997 11L5.99969 18" stroke="currentColor" stroke-width="1.5"
-                                  stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M15.5407 6.08278L14.2989 6.19567C12.287 6.37857 11.2811 6.47002 11.0444 7.12388C10.8076 7.77774 11.5219 8.49198 12.9504 9.92046L14.0792 11.0493C15.5077 12.4778 16.222 13.1921 16.8758 12.9553C17.5297 12.7186 17.6211 11.7127 17.804 9.70078L17.9169 8.45902C18.027 7.24766 18.0821 6.64198 17.7199 6.27979C17.3577 5.9176 16.752 5.97266 15.5407 6.08278Z"
-                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                  stroke-linejoin="round"></path>
-                        </svg>
-                    </a>
+                    {% include 'components/buttons/text-button.html' with label="Take a look around" url="#showcase" %}
+                    {% include 'components/buttons/primary-button.html' with label="Go to dedicated space" url=projects_url %}
                 </div>
             </div>
 
             {# Project Showcase #}
-            <div data-aos="fade-up"
+            <div id="showcase"
+                 data-aos="fade-up"
                  data-aos-anchor-placement="top-center"
                  data-aos-duration="1000"
                  data-aos-delay="300"
                  class="flex flex-col gap-2 w-full">
-                <a href="" class="h-[75vh] aspect-16 bg-white focus:border-none">
-                    <img src="{% static 'core/images/arigato.png' %}" alt=""
-                         class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 default-transition">
+                <a href="{% url 'core:project_detail' pk=latest_project.id slug=latest_project.slug %}"
+                   class="relative h-[75vh] aspect-16 bg-white focus:border-none active:border-none outline-none focus:outline-none">
+                    <img src="{{ latest_project.cover_image.url }}" alt="{{ latest_project.title }}"
+                         class="w-full h-full object-cover grayscale contrast-125 blur-sm">
+
+                    <img src="{{ latest_project.cover_image.url }}" alt="{{ latest_project.title }}"
+                         class="absolute w-1/3 max-w-64 2xl:max-w-96 right-[10%] top-1/3 object-contain contrast-125 rotate-3 border-8 border-white shadow-xl rounded-2xl">
                 </a>
-                <div class="flex items-center justify-between p-8">
+                <div class="flex items-center justify-start p-8">
                     <div class="w-full flex flex-col gap-1">
-                        <h4 class="stroked-text">Devfest Yaounde 2025</h4>
+                        <h4 class="stroked-text">{{ latest_project.title }}</h4>
                         <div class="flex items-center justify-start gap-2 text-greyColor">
-                            <p>Octobre 2025</p>
+                            <p>{{ latest_project.created_at|month_year }}</p>
                             <div class="size-1 bg-greyColor rounded-full"></div>
-                            <p>2min read</p>
+                            <p>
+                                {% if latest_project.get_read_time > 1 %}
+                                    {{ latest_project.get_read_time }} mins read
+                                {% else %}
+                                    {{ latest_project.get_read_time }} min read
+                                {% endif %}
+                            </p>
                             <div class="size-1 bg-greyColor rounded-full"></div>
-                            <p>3 weeks ago</p>
+                            <p>{{ latest_project.time_since_created }}</p>
                         </div>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
-                        <path d="M12.9997 11L5.99969 18" stroke="currentColor" stroke-width="1.5"
-                              stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M15.5407 6.08278L14.2989 6.19567C12.287 6.37857 11.2811 6.47002 11.0444 7.12388C10.8076 7.77774 11.5219 8.49198 12.9504 9.92046L14.0792 11.0493C15.5077 12.4778 16.222 13.1921 16.8758 12.9553C17.5297 12.7186 17.6211 11.7127 17.804 9.70078L17.9169 8.45902C18.027 7.24766 18.0821 6.64198 17.7199 6.27979C17.3577 5.9176 16.752 5.97266 15.5407 6.08278Z"
-                              stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                              stroke-linejoin="round"></path>
-                    </svg>
+                    {% include 'components/icons/arrow-top-right.html' %}
                 </div>
             </div>
 
-            <div class="grid grid-cols-12 gap-4 items-start justify-center p-8">
-                <div
-                        data-aos="fade-up"
-                        data-aos-anchor-placement="top-center"
-                        data-aos-duration="1000"
-                        data-aos-delay="200"
-                        class="col-span-4 w-full min-h-48 max-h-56 aspect-16 bg-primary-300 self-end"></div>
-
-                <div data-aos="fade-up"
-                     data-aos-anchor-placement="top-center"
-                     data-aos-duration="1000"
-                     data-aos-delay="100"
-                     class="col-span-4 m-auto max-w-screen-lg min-h-64 2xl:min-h-fit text-center p-4">
-                    <h2>
-                        But the idea is to convince you. Here are some more...
-                    </h2>
-                    <p class="text-greyColor">
-                        I approach my projects with the belief that creativity is built through persistence, not
-                        effortless shortcuts. By leaning into challenges and problem-solving, I’m able to develop
-                        innovative, well-crafted solutions that stand out.
-                    </p>
+            {% if featured_projects >= 4 %}
+                <div class="grid grid-cols-12 gap-4 items-start justify-center p-8">
+                    {% for i in "123456"|make_list %}
+                        {% if forloop.counter == 1 and featured_projects.0 %}
+                            {# Project 1 #}
+                            <div data-aos="fade-up"
+                                 data-aos-anchor-placement="top-center"
+                                 data-aos-duration="1000"
+                                 data-aos-delay="100"
+                                 class="col-span-4 w-full min-h-48 max-h-80 h-full aspect-16 bg-primary-300 self-end overflow-hidden rounded-lg">
+                                <img src="{{ featured_projects.0.cover_image.url }}"
+                                     alt="{{ featured_projects.0.title }}"
+                                     class="w-full h-full object-cover">
+                            </div>
+                        {% elif forloop.counter == 2 %}
+                            {# Text content in position 2 #}
+                            <div data-aos="fade-up"
+                                 data-aos-anchor-placement="top-center"
+                                 data-aos-duration="1000"
+                                 data-aos-delay="200"
+                                 class="col-span-4 m-auto max-w-screen-lg min-h-64 2xl:min-h-fit text-center p-4">
+                                <h2>
+                                    But the idea is to convince you. Here are some more...
+                                </h2>
+                                <p class="text-greyColor">
+                                    I approach my projects with the belief that creativity is built through persistence,
+                                    not
+                                    effortless shortcuts. By leaning into challenges and problem-solving, I'm able to
+                                    develop
+                                    innovative, well-crafted solutions that stand out.
+                                </p>
+                            </div>
+                        {% elif forloop.counter == 3 and featured_projects.1 %}
+                            {# Project 3 #}
+                            <div data-aos="fade-up"
+                                 data-aos-anchor-placement="top-center"
+                                 data-aos-duration="1000"
+                                 data-aos-delay="300"
+                                 class="col-span-4 w-full min-h-48 max-h-80 h-full aspect-16 bg-primary-300 self-end overflow-hidden rounded-lg">
+                                <img src="{{ featured_projects.1.cover_image.url }}"
+                                     alt="{{ featured_projects.1.title }}"
+                                     class="w-full h-full object-cover">
+                            </div>
+                        {% elif forloop.counter == 4 and featured_projects.2 %}
+                            {# Project 4 #}
+                            <div data-aos="fade-up"
+                                 data-aos-anchor-placement="top-center"
+                                 data-aos-duration="1000"
+                                 data-aos-delay="100"
+                                 class="col-span-4 w-full min-h-48 max-h-80 h-full aspect-16 bg-primary-300 overflow-hidden rounded-lg">
+                                <img src="{{ featured_projects.2.cover_image.url }}"
+                                     alt="{{ featured_projects.2.title }}"
+                                     class="w-full h-full object-cover">
+                            </div>
+                        {% elif forloop.counter == 5 %}
+                            {# Call-to-action in position 5 #}
+                            <div data-aos="fade-up"
+                                 data-aos-anchor-placement="top-center"
+                                 data-aos-duration="1000"
+                                 data-aos-delay="500"
+                                 class="col-span-4 w-full h-full min-h-80 flex flex-col gap-1.5 items-center justify-center p-8 bg-primary-100 text-center rounded-3xl border-2 border-dashed border-primary-400">
+                                <small class="text-greyColor">Guess what?</small>
+                                <p>
+                                    There's more to this section than these.<br>Consider dropping an eye!
+                                </p>
+                                {% include 'components/buttons/primary-button.html' with label="Go to dedicated space" url=projects_url %}
+                            </div>
+                        {% elif forloop.counter == 6 and featured_projects.3 %}
+                            {# Project 6 #}
+                            <div data-aos="fade-up"
+                                 data-aos-anchor-placement="top-center"
+                                 data-aos-duration="1000"
+                                 data-aos-delay="300"
+                                 class="col-span-4 w-full min-h-48 max-h-80 h-full aspect-16 bg-primary-300 overflow-hidden rounded-lg">
+                                <img src="{{ featured_projects.3.cover_image.url }}"
+                                     alt="{{ featured_projects.3.title }}"
+                                     class="w-full h-full object-cover">
+                            </div>
+                        {% else %}
+                            {# Empty placeholder #}
+                            <div class="col-span-4 w-full min-h-48 max-h-80 h-full aspect-16 bg-primary-300 overflow-hidden rounded-lg"></div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-
-                <div data-aos="fade-up"
-                     data-aos-anchor-placement="top-center"
-                     data-aos-duration="1000"
-                     data-aos-delay="300"
-                     class="col-span-4 w-full min-h-48 max-h-56 aspect-16 bg-primary-300 self-end"></div>
-
-                <div data-aos="fade-up"
-                     data-aos-anchor-placement="top-center"
-                     data-aos-duration="1000"
-                     data-aos-delay="100"
-                     class="col-span-4 w-full min-h-48 max-h-56 aspect-16 bg-primary-300"></div>
-
-                <div
-                        data-aos="fade-up"
-                        data-aos-anchor-placement="top-center"
-                        data-aos-duration="1000"
-                        data-aos-delay="200"
-                        class="col-span-4 w-full h-full min-h-80 flex flex-col gap-1.5 items-center justify-center p-8 bg-primary-100 text-center rounded-3xl border-2 border-dashed border-primary-400">
-                    <small class="text-greyColor">Guess what?</small>
-                    <p>
-                        There's more to this section than these.<br>Consider dropping an eye!
-                    </p>
-                    <a href=""
-                       class="flex items-center justify-center gap-2 px-4 py-1.5 border border-primary rounded-xl bg-white hover:bg-whiteColor default-transition">
-                        Go to dedicated space
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
-                            <path d="M12.9997 11L5.99969 18" stroke="currentColor" stroke-width="1.5"
-                                  stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M15.5407 6.08278L14.2989 6.19567C12.287 6.37857 11.2811 6.47002 11.0444 7.12388C10.8076 7.77774 11.5219 8.49198 12.9504 9.92046L14.0792 11.0493C15.5077 12.4778 16.222 13.1921 16.8758 12.9553C17.5297 12.7186 17.6211 11.7127 17.804 9.70078L17.9169 8.45902C18.027 7.24766 18.0821 6.64198 17.7199 6.27979C17.3577 5.9176 16.752 5.97266 15.5407 6.08278Z"
-                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                  stroke-linejoin="round"></path>
-                        </svg>
-                    </a>
-                </div>
-
-                <div data-aos="fade-up"
-                     data-aos-anchor-placement="top-center"
-                     data-aos-duration="1000"
-                     data-aos-delay="300"
-                     class="col-span-4 w-full min-h-48 max-h-56 aspect-16 bg-primary-300"></div>
-            </div>
+            {% endif %}
         </div>
     </section>
 
     {# Footer Section #}
-    <footer class="w-full bg-white mb-16">
-        <div class="flex flex-col p-8 items-center justify-center gap-4 max-w-screen-md m-auto text-center min-h-56">
-            <h2>
-                Guess I was convincing?!<br>
-                Let's get in touch henceforth.
-            </h2>
-            <p class="text-greyColor">
-                I am introvert, but I am social. Special in my kind &
-                <span class="text-primary underline">available to make magic</span>.
-            </p>
-        </div>
-    </footer>
+    {% include 'components/footer.html' %}
 {% endblock %}

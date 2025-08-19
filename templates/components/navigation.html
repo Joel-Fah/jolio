@@ -1,5 +1,6 @@
 {% load static %}
 
+{% with request.resolver_match.url_name as url_name %}
 <!-- Navigation Component -->
 <nav class="fixed inset-0 pointer-events-none z-40">
     <!-- Right Sidebar -->
@@ -13,8 +14,8 @@
             <div class="flex flex-col gap-6 mb-20">
                 <!-- Home -->
                 <div class="relative group">
-                    <a href="#"
-                       class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                    <a href="{% if url_name == 'home' %}#top{% else %}{% url 'core:home' %}{% endif %}"
+                       class="{% if url_name == 'home' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
                              color="#2b2b2b" fill="none">
                             <path d="M18 20C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4"
@@ -36,10 +37,10 @@
                     </div>
                 </div>
 
-                <!-- About -->
+                <!-- Projects (Dids) -->
                 <div class="relative group">
-                    <a href="#"
-                       class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                    <a href="{% if url_name == 'projects' %}#top{% else %}{% url 'core:projects' %}{% endif %}"
+                       class="{% if url_name == 'projects' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
                              color="#2b2b2b" fill="none">
                             <path d="M22 14V10C22 6.22876 22 4.34315 20.8284 3.17157C19.6569 2 17.7712 2 14 2H12C8.22876 2 6.34315 2 5.17157 3.17157C4 4.34315 4 6.22876 4 10V14C4 17.7712 4 19.6569 5.17157 20.8284C6.34315 22 8.22876 22 12 22H14C17.7712 22 19.6569 22 20.8284 20.8284C22 19.6569 22 17.7712 22 14Z"
@@ -61,10 +62,10 @@
                     </div>
                 </div>
 
-                <!-- Projects -->
+                <!-- About -->
                 <div class="relative group">
                     <a href="#"
-                       class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                       class="{% if url_name == 'about' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
                              color="#2b2b2b" fill="none">
                             <path d="M5.07579 17C4.08939 4.54502 12.9123 1.0121 19.9734 2.22417C20.2585 6.35185 18.2389 7.89748 14.3926 8.61125C15.1353 9.38731 16.4477 10.3639 16.3061 11.5847C16.2054 12.4534 15.6154 12.8797 14.4355 13.7322C11.8497 15.6004 8.85421 16.7785 5.07579 17Z"
@@ -82,10 +83,10 @@
                     </div>
                 </div>
 
-                <!-- Skills -->
+                <!-- Communities -->
                 <div class="relative group">
                     <a href="#"
-                       class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                       class="{% if url_name == 'communities' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
                              color="#2b2b2b" fill="none">
                             <path d="M17 7V11C17 13.7614 14.7614 16 12 16C9.23858 16 7 13.7614 7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7Z"
@@ -187,3 +188,4 @@
         </div>
     </div>
 </nav>
+{% endwith %}

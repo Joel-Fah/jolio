@@ -1,0 +1,322 @@
+{% extends 'core/base.html' %}
+{% load static i18n %}
+{% load tailwind_tags get_month_year %}
+
+{# Title of the page #}
+{% block title %}
+    One of my innocently taken decisions: {{ project }}
+{% endblock %}
+
+{% block extra_styles %}
+    <style>
+        ul li {
+            list-style: disc;
+            margin-left: 3rem;
+            text-indent: 0 !important;
+        }
+    </style>
+{% endblock %}
+
+{# Body of the page #}
+{% block content %}
+    <section id="hero" class="w-[calc(100%-64px)] max-w-screen-lg m-auto min-h-screen p-8">
+        {# Header Row #}
+        <div class="flex items-center justify-center gap-20 pt-16">
+            <img src="{{ project.cover_image.url }}" alt="{{ project.title }}"
+                 class="w-1/3 max-w-64 2xl:max-w-96 top-1/3 object-contain contrast-125 -rotate-3 border-8 border-white shadow-xl rounded-2xl">
+            <div>
+                <div class="flex items-center gap-4 mb-2">
+                    <span class="text-sm text-greyColor">{{ project.created_at|month_year }}</span>
+                    <div class="size-1 rounded-full bg-greyColor"></div>
+                    <span class="text-sm text-greyColor">
+                        {% if project.get_read_time > 1 %}
+                            {{ project.get_read_time }} mins read
+                        {% else %}
+                            {{ project.get_read_time }} min read
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="h-px w-full bg-greyColor flex-1 mb-4"></div>
+
+                <h1 class="stroked-text mb-4 title stroked-text">{{ project.title }}</h1>
+                <div class="flex items-start justify-start gap-4">
+                        <span class="flex items-start justify-start gap-1 text-green-600 capitalize">
+                            {% if project.category == 'design' %}
+                                {% include 'components/icons/design.html' with attributes="" %}
+                                {{ project.category }}
+                            {% elif project.category == 'development' %}
+                                {% include 'components/icons/code.html' with attributes="" %}
+                                {{ project.category }}
+                            {% else %}
+                                {% include 'components/icons/mixed.html' with attributes="" %}
+                                Design & Development
+                            {% endif %}
+                        </span>
+                    <span class="flex items-start justify-start gap-1 text-blue-600 capitalize">
+                            {% if project.project_type == 'contract' %}
+                                {% include 'components/icons/contract.html' with attributes="" %}
+                            {% elif project.project_type == 'community' %}
+                                {% include 'components/icons/community.html' with attributes="" %}
+                            {% elif project.project_type == 'open_source' %}
+                                {% include 'components/icons/open-source.html' with attributes="" %}
+                            {% else %}
+                                {% include 'components/icons/personal.html' with attributes="" %}
+                            {% endif %}
+                        {{ project.project_type }}
+                        </span>
+                    <span class="flex items-start justify-start gap-1 text-primary-400 capitalize">
+                            {% include 'components/icons/time-since.html' with attributes="" %}
+                            {{ project.time_since_created }}
+                        </span>
+                </div>
+            </div>
+        </div>
+
+        {# About The Project #}
+        <div class="mt-16">
+            <h2 class="mb-2">Details you didn’t ask for ... you're welcome!</h2>
+
+            {# Project Tags #}
+            <div class="mb-8 flex items-center justify-start gap-2">
+                {% for tag in project.tags.all %}
+                    {% include 'components/tag-chip.html' with label=tag.name %}
+                {% endfor %}
+            </div>
+
+            {# Project Description #}
+            <div class="text-lg leading-relaxed indent-8 space-y-4">{{ project.description|safe }}</div>
+        </div>
+
+        {# Project Images Gallery #}
+        {% if media %}
+            <div class="mt-8">
+                <h2 class="mb-8">Visual Journey</h2>
+                <div id="gallery" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                    {% for md in media %}
+                        <div class="break-inside-avoid mb-6 group cursor-pointer"
+                             onclick="openLightbox({{ forloop.counter0 }})">
+                            <div class="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]">
+                                <img src="{{ md.image.url }}"
+                                     alt="{{ md.caption|default:project.title }}"
+                                     class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                                     loading="lazy">
+                                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                                {% if md.caption %}
+                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 pb-2">
+                                        <p class="text-whiteColor text-sm font-medium line-clamp-2">{{ md.caption }}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {# Lightbox Modal #}
+            <div id="lightbox"
+                 class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden items-center justify-center p-4 overflow-auto">
+                <div class="relative max-w-screen-lg screen- m-auto max-h-full w-full">
+                    <button onclick="closeLightbox()"
+                            class="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors">
+                        <svg class="size-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                    <img id="lightbox-image" src="" alt=""
+                         class="max-w-screen-lg m-auto max-h-full object-contain rounded-lg">
+                    <div id="lightbox-caption"
+                         class="absolute w-full top-0 left-0 right-0 bg-gradient-to-t from-transparent to-black/70 p-4 rounded-t-lg">
+                        <p class="text-whiteColor"></p>
+                    </div>
+                </div>
+
+                {# Navigation arrows #}
+                <button onclick="previousImage()"
+                        class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors">
+                    <svg class="size-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <button onclick="nextImage()"
+                        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors">
+                    <svg class="size-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        {% endif %}
+    </section>
+
+    {# Floating Action Buttons #}
+    <div id="floating-buttons"
+         class="fixed bottom-20 right-20 flex flex-col gap-3 z-20 transition-transform duration-150 ease-out">
+        {% if project.live_url %}
+            <div class="group relative">
+                <a href="{{ project.live_url }}" target="_blank" rel="noopener noreferrer"
+                   class="flex items-center justify-center w-14 h-14 bg-white rounded-lg shadow-lg border border-gray-200 hover:shadow-xl hover:scale-105 transition-all duration-200">
+                    {% include 'components/icons/external-link.html' with attributes="size-6 text-green-600" %}
+                </a>
+                <div class="absolute right-16 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                    <div class="bg-gray-800 text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap">
+                        View Live Project
+                        <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-y-4 border-y-transparent"></div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if project.repo_url %}
+            <div class="group relative">
+                <a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer"
+                   class="flex items-center justify-center w-14 h-14 bg-white rounded-lg shadow-lg border border-gray-200 hover:shadow-xl hover:scale-105 transition-all duration-200">
+                    <svg class="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <div class="absolute right-16 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                    <div class="bg-gray-800 text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap">
+                        View Repository
+                        <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-y-4 border-y-transparent"></div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    {# Footer Section #}
+    {% include 'components/footer.html' %}
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const floatingButtons = document.getElementById('floating-buttons');
+            const footer = document.querySelector('footer');
+
+            if (footer && floatingButtons) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const footerRect = footer.getBoundingClientRect();
+                        const viewportHeight = window.innerHeight;
+
+                        if (entry.isIntersecting) {
+                            // Calculate how much of the footer is visible
+                            const footerTop = footerRect.top;
+                            const visibleFooterHeight = viewportHeight - footerTop;
+
+                            // Move buttons up by the visible footer height plus some padding
+                            const translateY = Math.max(0, visibleFooterHeight - 64);
+                            floatingButtons.style.transform = `translateY(-${translateY}px)`;
+                        } else {
+                            floatingButtons.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, {
+                    threshold: 0,
+                    rootMargin: '0px'
+                });
+
+                observer.observe(footer);
+
+                // Also handle scroll for smoother movement
+                let ticking = false;
+
+                function updateButtonPosition() {
+                    const footerRect = footer.getBoundingClientRect();
+                    const viewportHeight = window.innerHeight;
+
+                    if (footerRect.top < viewportHeight) {
+                        const visibleFooterHeight = viewportHeight - footerRect.top;
+                        const translateY = Math.max(0, visibleFooterHeight - 64);
+                        floatingButtons.style.transform = `translateY(-${translateY}px)`;
+                    } else {
+                        floatingButtons.style.transform = 'translateY(0)';
+                    }
+
+                    ticking = false;
+                }
+
+                function requestTick() {
+                    if (!ticking) {
+                        requestAnimationFrame(updateButtonPosition);
+                        ticking = true;
+                    }
+                }
+
+                window.addEventListener('scroll', requestTick);
+                window.addEventListener('resize', requestTick);
+            }
+        });
+    </script>
+
+    <script>
+        // Add to your existing JavaScript block
+        let currentImageIndex = 0;
+        const galleryImages = [
+            {% for md in media %}
+                {
+                    src: "{{ md.image.url }}",
+                    alt: "{{ md.caption|default:project.title }}",
+                    caption: "{{ md.caption|default:'' }}"
+                }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ];
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+
+            lightboxImage.src = galleryImages[index].src;
+            lightboxImage.alt = galleryImages[index].alt;
+
+            if (galleryImages[index].caption) {
+                lightboxCaption.querySelector('p').textContent = galleryImages[index].caption;
+                lightboxCaption.style.display = 'block';
+            } else {
+                lightboxCaption.style.display = 'none';
+            }
+
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            openLightbox(currentImageIndex);
+        }
+
+        function previousImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            openLightbox(currentImageIndex);
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                previousImage();
+            }
+        });
+
+        // Close lightbox when clicking outside the image
+        document.getElementById('lightbox').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+    </script>
+{% endblock %}
