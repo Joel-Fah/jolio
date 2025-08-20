@@ -1,11 +1,9 @@
 from django.contrib import admin
-from django.contrib.admin.widgets import AdminFileWidget
 from django.db import models
-from django.utils.html import format_html
 from unfold.admin import ModelAdmin
 from unfold.contrib.forms.widgets import WysiwygWidget
 
-from core.models import Project, ProjectTag, ProjectMedia
+from core.models import Project, Tag, ProjectMedia, Achievement
 
 
 # Register your models here.
@@ -31,7 +29,7 @@ class ProjectMediaAdmin(ModelAdmin):
     ordering = ['project__title']
 
 
-@admin.register(ProjectTag)
+@admin.register(Tag)
 class ProjectTagAdmin(ModelAdmin):
     list_display = ['name', 'get_project_count', 'get_projects']
     search_fields = ['name']
@@ -50,3 +48,16 @@ class ProjectTagAdmin(ModelAdmin):
 
     get_projects.short_description = 'Associated Projects'
     get_project_count.short_description = 'Project Count'
+
+@admin.register(Achievement)
+class AchievementAdmin(ModelAdmin):
+    list_display = ['title', 'event_date', 'is_published', 'created_at']
+    search_fields = ['title', 'content']
+    list_filter = ['is_published', 'event_date', 'created_at']
+    ordering = ['-created_at', '-event_date']
+
+    readonly_fields = ['slug']
+
+    formfield_overrides = {
+        models.TextField: {'widget': WysiwygWidget},
+    }

@@ -17,7 +17,7 @@
                     data-aos-anchor-placement="top-center"
                     data-aos-duration="1000"
                     class="flex flex-col gap-4 items-center justify-center">
-                <img src="{% static 'core/images/manaja_dash.png' %}" alt="My hero dash"
+                <img src="{% static 'core/images/manaja_dash.png' %}" alt="My manaja dash"
                      class="w-1/3 select-none pointer-events-none">
 
                 {# Info Box #}
@@ -103,11 +103,13 @@
                                 </div>
 
                                 {# Project Tags #}
-                                <div class="flex flex-wrap gap-2 my-4 mb-6">
-                                    {% for tag in project.tags.all %}
-                                        {% include 'components/tag-chip.html' with label=tag.name %}
-                                    {% endfor %}
-                                </div>
+                                {% if project.tags.exists %}
+                                    <div class="flex flex-wrap gap-2 my-4 mb-6">
+                                        {% for tag in project.tags.all %}
+                                            {% include 'components/tag-chip.html' with label=tag.name %}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
 
                                 {# Project Links #}
                                 <div class="flex flex-col items-start gap-2">
@@ -174,14 +176,7 @@
         </section>
     {% else %}
         {# Empty Projects Section #}
-        <div class="w-[calc(100%-64px)] max-w-lg m-auto flex flex-col gap-4 items-center justify-center p-8 text-center">
-            <img src="{% static 'core/images/thinking.svg' %}" alt="Thinking about my career choices">
-            <p class=" text-greyColor">
-                Nothing to see here yet — just me, overthinking what to show off. The projects exist (somewhere), but
-                for
-                now it’s just empty thought bubbles here. Check back later, maybe I’ll have figured it out.
-            </p>
-        </div>
+        {% include 'components/empty.html' with label="Nothing to see here yet — just me, overthinking what to show off. The projects exist (somewhere), but for now it’s just empty thought bubbles here. Check back later, maybe I’ll have figured it out." %}
     {% endif %}
 
     {# Footer Section #}

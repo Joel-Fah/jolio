@@ -62,10 +62,10 @@
                     </div>
                 </div>
 
-                <!-- About -->
+                <!-- Achievements -->
                 <div class="relative group">
-                    <a href="#"
-                       class="{% if url_name == 'about' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                    <a href="{% if url_name == 'achievements' %}#top{% else %}{% url 'core:achievements' %}{% endif %}"
+                       class="{% if url_name == 'achievements' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
                              color="#2b2b2b" fill="none">
                             <path d="M5.07579 17C4.08939 4.54502 12.9123 1.0121 19.9734 2.22417C20.2585 6.35185 18.2389 7.89748 14.3926 8.61125C15.1353 9.38731 16.4477 10.3639 16.3061 11.5847C16.2054 12.4534 15.6154 12.8797 14.4355 13.7322C11.8497 15.6004 8.85421 16.7785 5.07579 17Z"
@@ -78,27 +78,6 @@
                     <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                         <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
                             <span class="text-primary-300 italic">involved into</span> this & that
-                        </div>
-                        <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
-                    </div>
-                </div>
-
-                <!-- Communities -->
-                <div class="relative group">
-                    <a href="#"
-                       class="{% if url_name == 'communities' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
-                             color="#2b2b2b" fill="none">
-                            <path d="M17 7V11C17 13.7614 14.7614 16 12 16C9.23858 16 7 13.7614 7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7Z"
-                                  stroke="#141B34" stroke-width="1.5"/>
-                            <path d="M17 7H14M17 11H14" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M20 11C20 15.4183 16.4183 19 12 19M12 19C7.58172 19 4 15.4183 4 11M12 19V22M12 22H15M12 22H9"
-                                  stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                    </a>
-                    <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                        <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
-                            <span class="text-primary-300 italic">talking of</span> communities
                         </div>
                         <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
                     </div>
