@@ -23,30 +23,65 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap" rel="stylesheet">
 
     {# Extra styles #}
+    <style>
+        @media (max-width: 1024px) {
+            .desktop-only {
+                display: none !important;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-tablet-only {
+                display: none !important;
+            }
+        }
+    </style>
     {% block extra_styles %}
 
     {% endblock %}
 </head>
 <body class="">
-{# Navigation #}
-{% include 'components/navigation.html' %}
+{# Mobile/Tablet Message #}
+<div class="mobile-tablet-only min-h-screen flex items-center justify-center bg-gray-50 px-6">
+    <div class="text-center max-w-md">
+        <div class="mb-6">
+            <svg class="mx-auto h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M5.07579 17C4.08939 4.54502 12.9123 1.0121 19.9734 2.22417C20.2585 6.35185 18.2389 7.89748 14.3926 8.61125C15.1353 9.38731 16.4477 10.3639 16.3061 11.5847C16.2054 12.4534 15.6154 12.8797 14.4355 13.7322C11.8497 15.6004 8.85421 16.7785 5.07579 17Z"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 22C4 15.5 7.84848 12.1818 10.5 10" stroke="currentColor" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <h1 class="text-primary mb-4">Mobile? Someday, my Friend</h1>
+        <p class="text-greyColor mb-6">
+            Dear mobile visitor: you’re valid, you’re loved, you’re just… not supported here right now. But hang tight —
+            the future has your name on it.
+        </p>
+        <div class="text-sm text-gray-500">
+            Mobile & tablet versions arriving soon ✨
+        </div>
+    </div>
+</div>
 
-{# Header of the page #}
-{% block header %}
+{# Desktop Content #}
+<div class="desktop-only">
+    {# Navigation #}
+    {% include 'components/navigation.html' %}
 
-{% endblock %}
-
-{# Body of the page #}
-<main class="">
-    {% block content %}
-
+    {# Header of the page #}
+    {% block header %}
     {% endblock %}
-</main>
 
-{# Footer of the page #}
-{% block footer %}
+    {# Body of the page #}
+    <main class="">
+        {% block content %}
+        {% endblock %}
+    </main>
 
-{% endblock %}
+    {# Footer of the page #}
+    {% block footer %}
+    {% endblock %}
+</div>
 
 {# Javascript #}
 <script src="{% static 'aos/aos.js' %}"></script>

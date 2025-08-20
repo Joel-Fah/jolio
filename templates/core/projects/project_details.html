@@ -40,18 +40,18 @@
 
                 <h1 class="stroked-text mb-4 title stroked-text">{{ project.title }}</h1>
                 <div class="flex items-start justify-start gap-4">
-                        <span class="flex items-start justify-start gap-1 text-green-600 capitalize">
-                            {% if project.category == 'design' %}
-                                {% include 'components/icons/design.html' with attributes="" %}
-                                {{ project.category }}
-                            {% elif project.category == 'development' %}
-                                {% include 'components/icons/code.html' with attributes="" %}
-                                {{ project.category }}
-                            {% else %}
-                                {% include 'components/icons/mixed.html' with attributes="" %}
-                                Design & Development
-                            {% endif %}
-                        </span>
+                    <span class="flex items-start justify-start gap-1 text-green-600 capitalize">
+                        {% if project.category == 'design' %}
+                            {% include 'components/icons/design.html' with attributes="" %}
+                            {{ project.category }}
+                        {% elif project.category == 'development' %}
+                            {% include 'components/icons/code.html' with attributes="" %}
+                            {{ project.category }}
+                        {% else %}
+                            {% include 'components/icons/mixed.html' with attributes="" %}
+                            Design & Development
+                        {% endif %}
+                    </span>
                     <span class="flex items-start justify-start gap-1 text-blue-600 capitalize">
                             {% if project.project_type == 'contract' %}
                                 {% include 'components/icons/contract.html' with attributes="" %}
@@ -65,9 +65,9 @@
                         {{ project.project_type }}
                         </span>
                     <span class="flex items-start justify-start gap-1 text-primary-400 capitalize">
-                            {% include 'components/icons/time-since.html' with attributes="" %}
-                            {{ project.time_since_created }}
-                        </span>
+                        {% include 'components/icons/time-since.html' with attributes="" %}
+                        {{ project.time_since_created }}
+                    </span>
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
             <h2 class="mb-2">Details you didn’t ask for ... you're welcome!</h2>
 
             {# Project Tags #}
-            <div class="mb-8 flex items-center justify-start gap-2">
+            <div class="mb-8 flex flex-wrap items-center justify-start gap-2">
                 {% for tag in project.tags.all %}
                     {% include 'components/tag-chip.html' with label=tag.name %}
                 {% endfor %}
@@ -89,8 +89,8 @@
 
         {# Project Images Gallery #}
         {% if media %}
-            <div class="mt-8">
-                <h2 class="mb-8">Visual Journey</h2>
+            <div class="">
+                <h2 class="my-8">Visual Journey</h2>
                 <div id="gallery" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
                     {% for md in media %}
                         <div class="break-inside-avoid mb-6 group cursor-pointer"
@@ -127,7 +127,12 @@
                          class="max-w-screen-lg m-auto max-h-full object-contain rounded-lg">
                     <div id="lightbox-caption"
                          class="absolute w-full top-0 left-0 right-0 bg-gradient-to-t from-transparent to-black/70 p-4 rounded-t-lg">
-                        <p class="text-whiteColor"></p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-whiteColor flex-1"></p>
+                            <div class="bg-black/50 text-white text-xs px-2 py-1 rounded-full ml-4">
+                                <span id="image-counter">1 of {{ media|length }}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -144,6 +149,67 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
                 </button>
+            </div>
+        {% endif %}
+
+        {# End divider #}
+        <div class="flex items-center justify-center gap-2 mt-8 mb-0">
+            <svg class="flex-1 h-2" viewBox="0 0 100 4" preserveAspectRatio="none" fill="none">
+                <path d="M0,2 Q5,0 10,2 T20,2 T30,2 T40,2 T50,2 T60,2 T70,2 T80,2 T90,2 T100,2" stroke="currentColor"
+                      stroke-width="0.5" class="text-greyColor"/>
+            </svg>
+            <span class="text-greyColor text-sm px-4">That's all folks!</span>
+            <svg class="flex-1 h-2" viewBox="0 0 100 4" preserveAspectRatio="none" fill="none">
+                <path d="M0,2 Q5,0 10,2 T20,2 T30,2 T40,2 T50,2 T60,2 T70,2 T80,2 T90,2 T100,2" stroke="currentColor"
+                      stroke-width="0.5" stroke-linecap="round" class="text-greyColor"/>
+            </svg>
+        </div>
+
+        {# Related Projects #}
+        {% if related_projects %}
+            <div class="mt-16">
+                <h2 class="mb-2">More proof I haven’t been completely wasting my time</h2>
+                <p class="text-greyColor mb-4">
+                    Some nights ended in nothing, others in something that lived on. What you see here is a mix of both
+                    — personal tinkering and client work stitched from the same restless thread. Sarcasm aside, this is
+                    me doing the work, one half-chaotic step at a time.
+                </p>
+                <div class="bg-transparent rounded-2xl overflow-hidden">
+                    {% for project in related_projects %}
+                        <div class="group hover:bg-primary-50/50 transition-colors duration-200">
+                            <a href="{% url 'core:project_detail' pk=project.id slug=project.slug %}"
+                               class="flex items-center gap-4 p-4">
+
+                                {# Leading Image #}
+                                <div class="flex-shrink-0">
+                                    <img src="{{ project.cover_image.url }}"
+                                         alt="{{ project.title }}"
+                                         class="w-16 h-16 object-cover rounded-lg grayscale contrast-125 group-hover:grayscale-0 default-transition">
+                                </div>
+
+                                {# Content #}
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="">
+                                        {{ project.title }}
+                                    </h3>
+                                    <div class="text-greyColor text-sm mt-1 line-clamp-1">
+                                        {{ project.description|safe|striptags }}
+                                    </div>
+                                </div>
+
+                                {# Trailing icon #}
+                                <div class="flex-shrink-0">
+                                    {% include 'components/icons/chevron-right.html' with attributes="group-hover:translate-x-1 default-transition" %}
+                                </div>
+                            </a>
+                        </div>
+
+                        {# Divider - don't show after last item #}
+                        {% if not forloop.last %}
+                            <div class="border-t border-primary-200"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         {% endif %}
     </section>
@@ -251,7 +317,6 @@
     </script>
 
     <script>
-        // Add to your existing JavaScript block
         let currentImageIndex = 0;
         const galleryImages = [
             {% for md in media %}
@@ -268,9 +333,13 @@
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightbox-image');
             const lightboxCaption = document.getElementById('lightbox-caption');
+            const imageCounter = document.getElementById('image-counter');
 
             lightboxImage.src = galleryImages[index].src;
             lightboxImage.alt = galleryImages[index].alt;
+
+            // Update counter
+            imageCounter.textContent = `${index + 1} of ${galleryImages.length}`;
 
             if (galleryImages[index].caption) {
                 lightboxCaption.querySelector('p').textContent = galleryImages[index].caption;
