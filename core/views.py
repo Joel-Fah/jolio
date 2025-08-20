@@ -48,4 +48,5 @@ class ProjectDetailView(DetailView):
         # Use the related_name from your models
         context['media'] = project.media.all()
         context['tags'] = project.tags.all()
+        context['related_projects'] = Project.objects.filter(tags__in=project.tags.all()).exclude(id=project.id).distinct()[:4]
         return context
