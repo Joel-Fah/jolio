@@ -1,0 +1,190 @@
+{% extends 'core/base.html' %}
+{% load static i18n %}
+{% load tailwind_tags get_month_year %}
+
+{# Title of the page #}
+{% block title %}
+    Achievements, Experiences, Random Brags (aka This & That)
+{% endblock %}
+
+{% block content %}
+    <section id="hero" class="w-[calc(100%-64px)] max-h-[calc(100vh-64px)] h-svh p-8">
+        <div class="flex flex-col gap-4 items-center max-w-screen-lg m-auto h-full justify-center text-center">
+            {# Top Content #}
+            <div
+                    data-aos="fade-up"
+                    data-aos-anchor-placement="top-center"
+                    data-aos-duration="1000"
+                    class="flex flex-col gap-4 items-center justify-center">
+                <img src="{% static 'core/images/achiever_dash.png' %}" alt="My achiever dash"
+                     class="w-1/3 select-none pointer-events-none">
+
+                {# Info Box #}
+                <div class="max-w-xl flex items-center justify-center gap-2 bg-warning/10 text-warning p-2 rounded-xl border border-dashed border-warning">
+                    <div class="">
+                        {% include 'components/icons/warning.html' with attributes="size-5" %}
+                    </div>
+                    <p class="text-sm text-left">
+                        This part of the site undergoes frequent changes.
+                    </p>
+                </div>
+
+                <h1 class="">The ongoing <span class="italic">Saga</span> of this and that I laid my hands into
+                </h1>
+                <p class="text-greyColor max-w-xl">
+                    Not every story needs to come with a GitHub repo. This is the corner where I dump experiences,
+                    community stuff, achievements, and other random-but-still-kinda-cool things.
+                </p>
+                <div class="flex items-center justify-center gap-4 text-greyColor">
+                    <p class="px-4 py-1 border border-greyColor rounded-full">a timeline of <span
+                            class="text-primary underline">productivity</span>.
+                    </p>
+                    <p>v3.0.1</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Achievements Timeline #}
+    <section class="w-[calc(100%-64px)] p-8 my-8">
+        <div class="max-w-screen-lg mx-auto">
+            <div class="relative">
+                {# Continuous vertical line #}
+                {% if achievements %}
+                    <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-300"></div>
+                {% endif %}
+
+                {% for achievement in achievements %}
+                    <div class="relative flex gap-6 mb-8">
+                        {# Stepper counter - back to flex layout #}
+                        <div class="relative flex-shrink-0">
+                            <div class="sticky top-6 flex items-center justify-center w-12 h-12 bg-primary text-whiteColor rounded-full font-semibold text-sm relative z-30 counter">
+                                {{ forloop.counter }}
+                            </div>
+                        </div>
+
+                        {# Achievement card #}
+                        <div class="flex-1 border border-gray-200 bg-white achievement-card transition-all duration-200"
+                             style="border-radius: 0.5rem;">
+                            {# Sticky Header with dynamic title #}
+                            <div class="sticky top-0 bg-gray-50 px-6 py-3 border-b border-gray-200 z-20 achievement-header transition-all duration-200"
+                                 data-achievement-id="{{ forloop.counter }}"
+                                 style="border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;">
+
+                                {# Dynamic title - shows when sticky, positioned above other elements #}
+                                <h3 class="text-gray-900 transition-all duration-300 sticky-title mb-2"
+                                    style="opacity: 0; max-height: 0; overflow: hidden;">
+                                    {{ achievement.title }}
+                                </h3>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <time class="text-sm text-gray-900">
+                                            {{ achievement.created_at|month_year }}
+                                        </time>
+
+                                        {% if achievement.tags.exists %}
+                                            <div class="flex flex-wrap gap-2">
+                                                {% for tag in achievement.tags.all %}
+                                                    {% include 'components/tag-chip.html' with label=tag.name %}
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    {% if achievement.link %}
+                                        <a href="{{ achievement.link }}" target="_blank"
+                                           class="text-primary hover:text-primary/80 text-sm font-medium">
+                                            View →
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            {# Content #}
+                            <div class="px-6 py-4 achievement-content transition-all duration-200"
+                                 style="border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem;">
+                                <h3 class="mb-1 main-title">
+                                    {{ achievement.title }}
+                                </h3>
+
+                                {# Event date #}
+                                {% if achievement.event_date %}
+                                    <div class="text-sm text-green-500 mb-4">
+                                        happened around {{ achievement.event_date|month_year }}
+                                    </div>
+                                {% endif %}
+
+                                <div class="prose prose-gray max-w-none text-gray-700 mb-4">
+                                    {{ achievement.content|safe }}
+                                </div>
+
+                                {% if achievement.image %}
+                                    <div class="mt-4 -mx-6 -mb-4">
+                                        <img src="{{ achievement.image.url }}"
+                                             alt="{{ achievement.title }}"
+                                             class="w-full h-auto object-cover">
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    {% include 'components/empty.html' with label="Nothing to brag about here yet — just me, pretending modesty while secretly plotting future greatness. Achievements exist (in my head, mostly), but for now it's just blank pages in this diary. Check back later, maybe the plot will thicken." %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    {# Footer Section #}
+    {% include 'components/footer.html' %}
+{% endblock %}
+
+{% block javascript %}
+    {# JavaScript for sticky title behavior #}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const headers = document.querySelectorAll('[data-achievement-id]');
+
+            // Reverse the counters
+            const counters = document.querySelectorAll('.counter');
+            const total = counters.length;
+            counters.forEach((counter, index) => {
+                counter.textContent = '#' + (total - index);
+            });
+
+            function checkStickyState() {
+                headers.forEach(header => {
+                    const stickyTitle = header.querySelector('.sticky-title');
+                    const card = header.closest('.achievement-card');
+                    const content = card.querySelector('.achievement-content');
+                    const headerRect = header.getBoundingClientRect();
+
+                    const isSticky = headerRect.top <= 1;
+
+                    if (isSticky) {
+                        stickyTitle.style.opacity = '1';
+                        stickyTitle.style.maxHeight = '2rem';
+                        stickyTitle.style.marginBottom = '0.5rem';
+                        header.style.borderTopLeftRadius = '0';
+                        header.style.borderTopRightRadius = '0';
+                        content.style.borderBottomLeftRadius = '0';
+                        content.style.borderBottomRightRadius = '0';
+                        card.style.borderRadius = '0';
+                    } else {
+                        stickyTitle.style.opacity = '0';
+                        stickyTitle.style.maxHeight = '0';
+                        stickyTitle.style.marginBottom = '0';
+                        header.style.borderTopLeftRadius = '0.5rem';
+                        header.style.borderTopRightRadius = '0.5rem';
+                        content.style.borderBottomLeftRadius = '0.5rem';
+                        content.style.borderBottomRightRadius = '0.5rem';
+                        card.style.borderRadius = '0.5rem';
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkStickyState);
+            checkStickyState();
+        });
+    </script>
+{% endblock %}

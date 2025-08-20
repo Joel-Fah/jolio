@@ -77,11 +77,13 @@
             <h2 class="mb-2">Details you didn’t ask for ... you're welcome!</h2>
 
             {# Project Tags #}
-            <div class="mb-8 flex flex-wrap items-center justify-start gap-2">
-                {% for tag in project.tags.all %}
-                    {% include 'components/tag-chip.html' with label=tag.name %}
-                {% endfor %}
-            </div>
+            {% if project.tags.exists %}
+                <div class="mb-8 flex flex-wrap items-center justify-start gap-2">
+                    {% for tag in project.tags.all %}
+                        {% include 'components/tag-chip.html' with label=tag.name %}
+                    {% endfor %}
+                </div>
+            {% endif %}
 
             {# Project Description #}
             <div class="text-lg leading-relaxed indent-8 space-y-4">{{ project.description|safe }}</div>

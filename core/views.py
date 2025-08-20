@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, ListView, DetailView
-from .models import Project, ProjectMedia, ProjectTag
+from .models import Project, Achievement
 
 
 # Create your views here.
@@ -48,5 +48,16 @@ class ProjectDetailView(DetailView):
         # Use the related_name from your models
         context['media'] = project.media.all()
         context['tags'] = project.tags.all()
-        context['related_projects'] = Project.objects.filter(tags__in=project.tags.all()).exclude(id=project.id).distinct()[:4]
+        context['related_projects'] = Project.objects.filter(tags__in=project.tags.all(), category=project.category).exclude(id=project.id).distinct()[:4]
         return context
+
+class AchievementsView(ListView):
+    template_name = 'core/achievements.html'
+    model = Achievement
+    context_object_name = 'achievements'
+    paginate_by = 10
+    ordering = ['-created_at', '-event_date']
+
+    def get_queryset(self):
+        queryset = super().get_queryset().prefetch_related('tags')
+        return queryset.filter(is_published=True)
