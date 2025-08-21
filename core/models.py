@@ -119,6 +119,14 @@ class Project(models.Model):
 
 
 class ProjectMedia(models.Model):
+    """
+    Represents media associated with a project, such as images or videos.
+    Attributes:
+        project (ForeignKey): The project this media belongs to.
+        image (ImageField): The media file, typically an image.
+        caption (str): Optional caption for the media.
+    Provides a string representation of the media in the format "Project Title - Caption".
+    """
     project = models.ForeignKey(Project, related_name="media", on_delete=models.CASCADE, help_text="Associated project")
     image = models.ImageField(upload_to="projects/media/")
     caption = models.CharField(max_length=255, blank=True, null=True, help_text="Optional caption for the media")
@@ -133,6 +141,13 @@ class ProjectMedia(models.Model):
 
 
 class Tag(models.Model):
+    """
+    Represents a tag that can be associated with projects or achievements.
+    Attributes:
+        name (str): The name of the tag, must be unique.
+    Provides a string representation of the tag name.
+    Provides ordering by name.
+    """
     name = models.CharField(max_length=50, unique=True)
 
     class Meta:
@@ -143,6 +158,21 @@ class Tag(models.Model):
 
 
 class Achievement(models.Model):
+    """
+    Represents an achievement with various attributes like title, content, image, tags, and event date.
+    Provides methods for calculating time since creation, update, and event date.
+    Attributes:
+        title (str): The title of the achievement.
+        slug (str): A unique URL-friendly identifier for the achievement, auto-generated from the title.
+        content (str): A description of the achievement.
+        image (ImageField): An optional image associated with the achievement.
+        tags (ManyToManyField): Tags associated with the achievement.
+        link (URLField): Optional link for more information about the achievement.
+        event_date (DateField): Date of the event related to the achievement, if applicable.
+        created_at (DateTimeField): The date and time when the achievement was created.
+        updated_at (DateField): The date when the achievement was last updated.
+        is_published (bool): Whether the achievement is visible on the site.
+    """
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     content = models.TextField(help_text="Achievement description")
@@ -178,3 +208,24 @@ class Achievement(models.Model):
 
     def __str__(self):
         return self.title
+
+class Skill(models.Model):
+    """
+    Represents a skill with a name and optional description.
+    Attributes:
+        name (str): The name of the skill, must be unique.
+        description (str): Optional description of the skill.
+    Provides a string representation of the skill name.
+    Provides ordering by name.
+    """
+    name = models.CharField(max_length=100, unique=True)
+    description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True, help_text="Skill last update date")
+    is_published = models.BooleanField(default=True, help_text="Is the skill visible on the site?")
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
