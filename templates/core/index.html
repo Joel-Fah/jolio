@@ -68,8 +68,8 @@
 
     {# About Section #}
     <section id="about" class="w-[calc(100%-64px)] grid grid-cols-12 my-8">
-        {# Top Row #}
         <div class="col-span-12 flex flex-col items-start justify-start gap-8">
+            {# Top Row #}
             <div data-aos="fade-up"
                  data-aos-anchor-placement="top-center"
                  data-aos-duration="1000"
@@ -345,6 +345,111 @@
                     </div>
                 </div>
             </div>
+
+            {# Skills Row #}
+            {% if skills %}
+            	<div class="grid grid-cols-12 w-full gap-4 p-8">
+                {# Text Content #}
+                <div data-aos="fade-up"
+                     data-aos-anchor-placement="top-center"
+                     data-aos-duration="1000"
+                     data-aos-delay="100"
+                     class="col-span-6 flex items-start justify-start gap-4">
+                    <div class="bg-white p-2 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+                            <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z"
+                                  stroke="#141B34" stroke-width="1.5"/>
+                            <path d="M7.5 14.5L16.5 14.5" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M7.5 10.5L12 10.5" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M7.5 6.5L16.5 6.5" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="flex flex-col items-start justify-start gap-2 mt-2">
+                        <h3 class="stroked-text">The tools in my arsenal</h3>
+                        <p class="2xl:text-xl">
+                            From crafting pixel-perfect designs to building robust applications, these are the
+                            technologies
+                            and skills that power my creative process. Each one represents countless hours of learning,
+                            experimenting, and building something meaningful.
+                        </p>
+                        <blockquote class="text-sm 2xl:text-base text-greyColor italic">
+                            Tools don't make the craftsman, but in the right hands, they become extensions of
+                            imagination
+                            and bridges between ideas and reality.
+                        </blockquote>
+                    </div>
+                </div>
+
+                {# Skills Bricked Wall #}
+                <div data-aos="fade-up"
+                     data-aos-anchor-placement="top-center"
+                     data-aos-duration="1000"
+                     data-aos-delay="300"
+                     class="col-span-6 relative">
+                    <div class="grid grid-cols-4 gap-3 auto-rows-min">
+                        {% for skill in skills %}
+                            {# Determine brick size based on index or skill properties #}
+                            {% if forloop.counter0 == 0 %}
+                                {# Flutter - Large brick #}
+                                <div class="col-span-2 row-span-2 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-6 relative group"
+                                     data-skill="{{ skill.name|lower }}"
+                                     style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
+                                    <div class="flex flex-col items-center justify-center h-full text-center">
+                                        <span class="text-sm font-medium text-primary">{{ skill.name }}</span>
+                                    </div>
+                                </div>
+                            {% elif forloop.counter0 == 1 %}
+                                {# Medium brick #}
+                                <div class="col-span-2 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-4 relative group"
+                                     data-skill="{{ skill.name|lower }}"
+                                     style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
+                                    <div class="flex flex-col items-center justify-center h-full text-center">
+                                        <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
+                                    </div>
+                                </div>
+                            {% elif forloop.counter0 == 2 %}
+                                {# Small brick #}
+                                <div class="col-span-1 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-3 relative group"
+                                     data-skill="{{ skill.name|lower }}"
+                                     style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
+                                    <div class="flex flex-col items-center justify-center h-full text-center">
+                                        <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
+                                    </div>
+                                </div>
+                            {% elif forloop.counter0 == 3 %}
+                                {# Tall brick #}
+                                <div class="col-span-1 row-span-2 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-4 relative group"
+                                     data-skill="{{ skill.name|lower }}"
+                                     style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
+                                    <div class="flex flex-col items-center justify-center h-full text-center">
+                                        <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
+                                    </div>
+                                </div>
+                            {% elif forloop.counter0 == 4 %}
+                                {# Wide brick #}
+                                <div class="col-span-2 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-4 relative group"
+                                     data-skill="{{ skill.name|lower }}"
+                                     style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
+                                    <div class="flex flex-col items-center justify-center h-full text-center">
+                                        <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
+                                    </div>
+                                </div>
+                            {% else %}
+                                {# Default small brick for remaining skills #}
+                                <div class="col-span-1 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-3 relative group"
+                                     data-skill="{{ skill.name|lower }}"
+                                     style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
+                                    <div class="flex flex-col items-center justify-center h-full text-center">
+                                        <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </section>
 

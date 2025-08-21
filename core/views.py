@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, ListView, DetailView
-from .models import Project, Achievement
+from .models import Project, Achievement, Skill
 
 
 # Create your views here.
@@ -17,6 +17,7 @@ class HomeView(TemplateView):
         if latest_project:
             featured_projects_queryset = featured_projects_queryset.exclude(id=latest_project.id)
         context['featured_projects'] = featured_projects_queryset[:4]
+        context['skills'] = Skill.objects.all().filter(is_published=True).order_by('name')
 
         return context
 
