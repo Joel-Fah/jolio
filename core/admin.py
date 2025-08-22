@@ -14,7 +14,7 @@ class ProjectAdmin(ModelAdmin):
     list_filter = ['project_type', 'category', 'is_published', 'created_at', 'updated_at']
     ordering = ['-created_at']
 
-    readonly_fields = ['slug']
+    readonly_fields = ['slug', 'created_at', 'updated_at']
 
     formfield_overrides = {
         models.TextField: {'widget': WysiwygWidget},
@@ -57,7 +57,7 @@ class AchievementAdmin(ModelAdmin):
     list_filter = ['is_published', 'event_date', 'created_at']
     ordering = ['-created_at', '-event_date']
 
-    readonly_fields = ['slug']
+    readonly_fields = ['slug', 'created_at', 'updated_at']
 
     formfield_overrides = {
         models.TextField: {'widget': WysiwygWidget},
@@ -70,7 +70,6 @@ class SkillAdmin(ModelAdmin):
     search_fields = ['name']
     list_filter = ['created_at', 'is_published']
     ordering = ['name', '-created_at']
-
 
     formfield_overrides = {
         models.TextField: {'widget': WysiwygWidget},

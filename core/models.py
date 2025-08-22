@@ -61,8 +61,8 @@ class Project(models.Model):
         upload_to="projects/covers/", blank=True, null=True
     )
     tags = models.ManyToManyField('Tag', blank=True, related_name="projects")
-    created_at = models.DateField(auto_now_add=True, help_text="Project creation date")
-    updated_at = models.DateField(auto_now=True, help_text="Project last update date")
+    created_at = models.DateTimeField(auto_now_add=True, help_text="Project creation date")
+    updated_at = models.DateTimeField(auto_now=True, help_text="Project last update date")
     is_published = models.BooleanField(default=True, help_text="Is the project visible on the site?")
 
     # optional extras
@@ -181,7 +181,7 @@ class Achievement(models.Model):
     link = models.URLField(blank=True, null=True)
     event_date = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True, help_text="Achievement last update date")
+    updated_at = models.DateTimeField(auto_now=True, help_text="Achievement last update date")
     is_published = models.BooleanField(default=True, help_text="Is the achievement visible on the site?")
 
     class Meta:
@@ -221,7 +221,7 @@ class Skill(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True, help_text="Skill last update date")
+    updated_at = models.DateTimeField(auto_now=True, help_text="Skill last update date")
     is_published = models.BooleanField(default=True, help_text="Is the skill visible on the site?")
 
     class Meta:

@@ -129,7 +129,67 @@
                         </div>
                     </div>
                 {% empty %}
-                    {% include 'components/empty.html' with label="Nothing to brag about here yet — just me, pretending modesty while secretly plotting future greatness. Achievements exist (in my head, mostly), but for now it's just blank pages in this diary. Check back later, maybe the plot will thicken." %}
+                    <div class="relative flex gap-6 mb-8">
+                        {# Placeholder stepper counter #}
+                        <div class="relative flex-shrink-0">
+                            <div class="sticky top-6 flex items-center justify-center w-12 h-12 border-2 border-dashed border-gray-300 text-gray-400 rounded-full font-semibold text-sm relative z-30">
+                                ?
+                            </div>
+                        </div>
+
+                        {# Placeholder achievement card #}
+                        <div class="flex-1 border-2 border-dashed border-primary-300 bg-transparent transition-all duration-200"
+                             style="border-radius: 0.5rem;">
+                            {# Placeholder Header #}
+                            <div class="sticky top-0 bg-primary-50/50 backdrop-blur-md px-6 py-3 border-b-2 border-dashed border-primary-300 z-20"
+                                 style="border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;">
+
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <time class="text-sm text-primary-400 italic">
+                                            Coming soon (I hope so)
+                                        </time>
+
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-2 py-1 text-xs border border-dashed border-primary-300 text-primary-400 rounded-full">
+                                                TBD
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {# Placeholder Content #}
+                            <div class="px-6 py-4"
+                                 style="border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem;">
+                                <h3 class="mb-1 text-primary-400">
+                                    Something amazing (probably)
+                                </h3>
+
+                                <div class="text-sm text-primary-400 mb-4 italic">
+                                    happened around... eventually
+                                </div>
+
+                                <div class="prose prose-primary max-w-none text-primary-500 mb-4">
+                                    <p>
+                                        Dear patient visitor, I'm currently in that magical phase where I'm "just about
+                                        to finish"
+                                        adding content here. You know, the same energy as "I'll start my diet on Monday"
+                                        but for
+                                        achievements. Rest assured, between my professional procrastination sessions and
+                                        sudden bursts
+                                        of productivity at 2 AM, something will eventually appear here.
+                                        <span class="italic">Probably</span>.
+                                    </p>
+                                </div>
+
+                                {# Placeholder image area #}
+                                <div class="mt-4 -mx-6 -mb-4 border-t-2 border-dashed border-primary-300 rounded-b-lg h-32 flex items-center justify-center bg-primary-50/30">
+                                    <span class="text-primary-400 text-sm">Future screenshot of greatness</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
         </div>

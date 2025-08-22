@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import Project, Achievement, Skill
 
@@ -49,8 +50,11 @@ class ProjectDetailView(DetailView):
         # Use the related_name from your models
         context['media'] = project.media.all()
         context['tags'] = project.tags.all()
-        context['related_projects'] = Project.objects.filter(tags__in=project.tags.all(), category=project.category).exclude(id=project.id).distinct()[:4]
+        context['related_projects'] = Project.objects.filter(tags__in=project.tags.all(),
+                                                             category=project.category).exclude(
+            id=project.id).distinct()[:4]
         return context
+
 
 class AchievementsView(ListView):
     template_name = 'core/achievements.html'
@@ -62,3 +66,12 @@ class AchievementsView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset().prefetch_related('tags')
         return queryset.filter(is_published=True)
+
+
+# State views
+def handler404(request, exception):
+    return render(request, 'errors/404.html', status=404)
+
+
+def handler500(request):
+    return render(request, 'errors/500.html', status=500)
