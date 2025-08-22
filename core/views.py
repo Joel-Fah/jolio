@@ -69,7 +69,7 @@ class AchievementsView(ListView):
 
 
 # State views
-def handler404(request, exception=None):
+def handler404(request, exception):
     return render(request, 'errors/404.html', status=404)
 
 
