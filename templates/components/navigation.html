@@ -165,13 +165,13 @@
                     @joelfah
                     <span class="block text-xs text-primary-400">Figma</span>
                 </a>
-                <a href="#"
+                <a href="{% if url_name == 'home' %}#top{% else %}{% url 'core:home' %}{% endif %}"
                    data-aos="fade-up"
                    data-aos-anchor-placement="top-center"
                    data-aos-duration="1000"
                    data-aos-delay="100"
-                   class="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
-                    <img src="{% static 'core/images/face.svg' %}" alt="face" class="h-8">
+                   class="flex items-center justify-center size-11 rounded-full hover:bg-primary-100 transition-colors duration-200">
+                    <img src="{% static 'core/images/pfp.jpg' %}" alt="face" class="size-8 rounded-full">
                 </a>
             </div>
         </div>
