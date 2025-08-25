@@ -1,5 +1,13 @@
 # Local development settings for Jolio
+import dj_database_url
+from dotenv import load_dotenv
+
 from .base import *
+
+# Load prod env file
+load_dotenv(
+    os.path.join(BASE_DIR, 'dev.env')
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -22,7 +30,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'supabase': dj_database_url.parse(os.getenv('SUPABASE_POSTGRESQL_URL')),
 }
 
 # Static files (CSS, JavaScript, Images)
