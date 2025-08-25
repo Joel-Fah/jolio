@@ -35,7 +35,8 @@
                  class="flex-grow flex items-center justify-center">
                 <div class="flex flex-col items-start gap-4 max-w-xs mt-auto">
                     <div class="flex gap-2 items-center">
-                        <img src="{% static 'core/images/pfp.jpg' %}" alt="face" class="size-6 rounded-full grayscale contrast-125">
+                        <img src="{% static 'core/images/pfp.jpg' %}" alt="face"
+                             class="size-6 rounded-full grayscale contrast-125">
                         <span class="text-xl"><span class="text-greyColor">i_am_</span>joelfah</span>
                     </div>
 
@@ -305,7 +306,9 @@
                      data-aos-duration="1000"
                      data-aos-delay="500"
                      class="col-span-4 flex items-start justify-start gap-4 bg-white w-full h-full max-h-96">
-                    <img src="{% static 'core/images/about_me.jpg' %}" alt="This is just me enjoying life under a pwapwa tree" class="w-full h-full object-cover grayscale hover:grayscale-0 default-transition">
+                    <img src="{% static 'core/images/about_me.jpg' %}"
+                         alt="This is just me enjoying life under a pwapwa tree"
+                         class="w-full h-full object-cover grayscale hover:grayscale-0 default-transition">
                 </div>
             </div>
 
@@ -317,7 +320,9 @@
                      data-aos-duration="1000"
                      data-aos-delay="100"
                      class="col-span-6 flex items-start justify-start gap-4 bg-white w-full h-full max-h-96">
-                    <img src="{% static 'core/images/about_me2.jpg' %}" alt="Enjoying myself in spending time giving out some trips and ticks" class="w-full h-full object-cover object-top grayscale hover:grayscale-0 default-transition">
+                    <img src="{% static 'core/images/about_me2.jpg' %}"
+                         alt="Enjoying myself in spending time giving out some trips and ticks"
+                         class="w-full h-full object-cover object-top grayscale hover:grayscale-0 default-transition">
                 </div>
 
                 {# What then #}
@@ -352,116 +357,119 @@
 
             {# Skills Row #}
             {% if skills %}
-            	<div class="grid grid-cols-12 w-full gap-4 p-8">
-                {# Text Content #}
-                <div data-aos="fade-up"
-                     data-aos-anchor-placement="top-center"
-                     data-aos-duration="1000"
-                     data-aos-delay="100"
-                     class="col-span-6 flex items-start justify-start gap-4">
-                    <div class="bg-white p-2 rounded-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
-                            <path d="M5 7.66667C5 7.04669 5 6.73669 5.06815 6.48236C5.25308 5.79218 5.79218 5.25308 6.48236 5.06815C6.73669 5 7.04669 5 7.66667 5H16.3333C16.9533 5 17.2633 5 17.5176 5.06815C18.2078 5.25308 18.7469 5.79218 18.9319 6.48236C19 6.73669 19 7.04669 19 7.66667C19 8.90663 19 9.52661 18.8637 10.0353C18.4938 11.4156 17.4156 12.4938 16.0353 12.8637C15.5266 13 14.9066 13 13.6667 13H10.3333C9.09337 13 8.47339 13 7.96472 12.8637C6.58436 12.4938 5.50617 11.4156 5.1363 10.0353C5 9.52661 5 8.90663 5 7.66667Z"
-                                  stroke="currentColor" stroke-width="1.5"/>
-                            <path d="M18 11C18.3716 11.5839 18.5574 11.8759 18.689 12.1897C18.8062 12.4694 18.8913 12.7615 18.9425 13.0604C19 13.3959 19 13.7419 19 14.4341V16C19 18.8284 19 20.2426 18.1213 21.1213C17.2426 22 15.8284 22 13 22H11C8.17157 22 6.75736 22 5.87868 21.1213C5 20.2426 5 18.8284 5 16V14.4341C5 13.7419 5 13.3959 5.0575 13.0604C5.10874 12.7615 5.1938 12.4694 5.31105 12.1897C5.44263 11.8759 5.62842 11.5839 6 11"
-                                  stroke="currentColor" stroke-width="1.5"/>
-                            <path d="M5 20C4.32352 20 3.98528 20 3.70219 19.922C3.08287 19.7512 2.58068 19.3162 2.34157 18.7433C2.23227 18.4815 2.19862 18.1593 2.1313 17.515L2.06691 16.8986C1.98995 16.1619 1.95147 15.7936 2.1089 15.5209C2.46075 14.9115 3.25125 15.0052 3.85704 15.0052H5"
-                                  stroke="currentColor" stroke-width="1.5"/>
-                            <path d="M19 20C19.6765 20 20.0147 20 20.2978 19.9219C20.9171 19.751 21.4193 19.3155 21.6584 18.742C21.7677 18.4799 21.8014 18.1574 21.8687 17.5124L21.9331 16.8954C21.9955 16.2975 22.1529 15.5626 21.5709 15.1773C21.3031 15 20.9164 15 20.143 15H19"
-                                  stroke="currentColor" stroke-width="1.5"/>
-                            <path d="M9 14.5L9 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                  stroke-linejoin="round"/>
-                            <path d="M15 14.5L15 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                  stroke-linejoin="round"/>
-                            <path d="M15 5C15 3.34315 13.6569 2 12 2C10.3431 2 9 3.34315 9 5" stroke="currentColor"
-                                  stroke-width="1.5"/>
-                        </svg>
+                <div class="grid grid-cols-12 w-full gap-4 p-8">
+                    {# Text Content #}
+                    <div data-aos="fade-up"
+                         data-aos-anchor-placement="top-center"
+                         data-aos-duration="1000"
+                         data-aos-delay="100"
+                         class="col-span-6 flex items-start justify-start gap-4">
+                        <div class="bg-white p-2 rounded-xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                                 fill="none">
+                                <path d="M5 7.66667C5 7.04669 5 6.73669 5.06815 6.48236C5.25308 5.79218 5.79218 5.25308 6.48236 5.06815C6.73669 5 7.04669 5 7.66667 5H16.3333C16.9533 5 17.2633 5 17.5176 5.06815C18.2078 5.25308 18.7469 5.79218 18.9319 6.48236C19 6.73669 19 7.04669 19 7.66667C19 8.90663 19 9.52661 18.8637 10.0353C18.4938 11.4156 17.4156 12.4938 16.0353 12.8637C15.5266 13 14.9066 13 13.6667 13H10.3333C9.09337 13 8.47339 13 7.96472 12.8637C6.58436 12.4938 5.50617 11.4156 5.1363 10.0353C5 9.52661 5 8.90663 5 7.66667Z"
+                                      stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M18 11C18.3716 11.5839 18.5574 11.8759 18.689 12.1897C18.8062 12.4694 18.8913 12.7615 18.9425 13.0604C19 13.3959 19 13.7419 19 14.4341V16C19 18.8284 19 20.2426 18.1213 21.1213C17.2426 22 15.8284 22 13 22H11C8.17157 22 6.75736 22 5.87868 21.1213C5 20.2426 5 18.8284 5 16V14.4341C5 13.7419 5 13.3959 5.0575 13.0604C5.10874 12.7615 5.1938 12.4694 5.31105 12.1897C5.44263 11.8759 5.62842 11.5839 6 11"
+                                      stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M5 20C4.32352 20 3.98528 20 3.70219 19.922C3.08287 19.7512 2.58068 19.3162 2.34157 18.7433C2.23227 18.4815 2.19862 18.1593 2.1313 17.515L2.06691 16.8986C1.98995 16.1619 1.95147 15.7936 2.1089 15.5209C2.46075 14.9115 3.25125 15.0052 3.85704 15.0052H5"
+                                      stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M19 20C19.6765 20 20.0147 20 20.2978 19.9219C20.9171 19.751 21.4193 19.3155 21.6584 18.742C21.7677 18.4799 21.8014 18.1574 21.8687 17.5124L21.9331 16.8954C21.9955 16.2975 22.1529 15.5626 21.5709 15.1773C21.3031 15 20.9164 15 20.143 15H19"
+                                      stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M9 14.5L9 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                                <path d="M15 14.5L15 13.5" stroke="currentColor" stroke-width="1.5"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                                <path d="M15 5C15 3.34315 13.6569 2 12 2C10.3431 2 9 3.34315 9 5" stroke="currentColor"
+                                      stroke-width="1.5"/>
+                            </svg>
+                        </div>
+
+                        <div class="flex flex-col items-start justify-start gap-2 mt-2">
+                            <h3 class="stroked-text">The tools in my arsenal</h3>
+                            <p class="2xl:text-xl">
+                                From crafting pixel-perfect designs to building robust applications, these are the
+                                technologies
+                                and skills that power my creative process. Each one represents countless hours of
+                                learning,
+                                experimenting, and building something meaningful.
+                            </p>
+                            <blockquote class="text-sm 2xl:text-base text-greyColor italic">
+                                Tools don't make the craftsman, but in the right hands, they become extensions of
+                                imagination
+                                and bridges between ideas and reality.
+                            </blockquote>
+                        </div>
                     </div>
 
-                    <div class="flex flex-col items-start justify-start gap-2 mt-2">
-                        <h3 class="stroked-text">The tools in my arsenal</h3>
-                        <p class="2xl:text-xl">
-                            From crafting pixel-perfect designs to building robust applications, these are the
-                            technologies
-                            and skills that power my creative process. Each one represents countless hours of learning,
-                            experimenting, and building something meaningful.
-                        </p>
-                        <blockquote class="text-sm 2xl:text-base text-greyColor italic">
-                            Tools don't make the craftsman, but in the right hands, they become extensions of
-                            imagination
-                            and bridges between ideas and reality.
-                        </blockquote>
+                    {# Skills Bricked Wall #}
+                    <div data-aos="fade-up"
+                         data-aos-anchor-placement="top-center"
+                         data-aos-duration="1000"
+                         data-aos-delay="300"
+                         class="col-span-6 relative">
+                        <div class="grid grid-cols-4 gap-3 auto-rows-min">
+                            {% for skill in skills %}
+                                {# Determine brick size based on index or skill properties #}
+                                {% if forloop.counter0 == 0 %}
+                                    {# Flutter - Large brick #}
+                                    <div class="col-span-2 row-span-2 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-6 relative group"
+                                         data-skill="{{ skill.name|lower }}"
+                                         style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
+                                        <div class="flex flex-col items-center justify-center h-full text-center">
+                                            <span class="text-sm font-medium text-primary">{{ skill.name }}</span>
+                                        </div>
+                                    </div>
+                                {% elif forloop.counter0 == 1 %}
+                                    {# Medium brick #}
+                                    <div class="col-span-2 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-4 relative group"
+                                         data-skill="{{ skill.name|lower }}"
+                                         style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
+                                        <div class="flex flex-col items-center justify-center h-full text-center">
+                                            <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
+                                        </div>
+                                    </div>
+                                {% elif forloop.counter0 == 2 %}
+                                    {# Small brick #}
+                                    <div class="col-span-1 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-3 relative group"
+                                         data-skill="{{ skill.name|lower }}"
+                                         style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
+                                        <div class="flex flex-col items-center justify-center h-full text-center">
+                                            <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
+                                        </div>
+                                    </div>
+                                {% elif forloop.counter0 == 3 %}
+                                    {# Tall brick #}
+                                    <div class="col-span-1 row-span-2 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-4 relative group"
+                                         data-skill="{{ skill.name|lower }}"
+                                         style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
+                                        <div class="flex flex-col items-center justify-center h-full text-center">
+                                            <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
+                                        </div>
+                                    </div>
+                                {% elif forloop.counter0 == 4 %}
+                                    {# Wide brick #}
+                                    <div class="col-span-2 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-4 relative group"
+                                         data-skill="{{ skill.name|lower }}"
+                                         style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
+                                        <div class="flex flex-col items-center justify-center h-full text-center">
+                                            <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    {# Default small brick for remaining skills #}
+                                    <div class="col-span-1 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-3 relative group"
+                                         data-skill="{{ skill.name|lower }}"
+                                         style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
+                                        <div class="flex flex-col items-center justify-center h-full text-center">
+                                            <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-
-                {# Skills Bricked Wall #}
-                <div data-aos="fade-up"
-                     data-aos-anchor-placement="top-center"
-                     data-aos-duration="1000"
-                     data-aos-delay="300"
-                     class="col-span-6 relative">
-                    <div class="grid grid-cols-4 gap-3 auto-rows-min">
-                        {% for skill in skills %}
-                            {# Determine brick size based on index or skill properties #}
-                            {% if forloop.counter0 == 0 %}
-                                {# Flutter - Large brick #}
-                                <div class="col-span-2 row-span-2 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-6 relative group"
-                                     data-skill="{{ skill.name|lower }}"
-                                     style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
-                                    <div class="flex flex-col items-center justify-center h-full text-center">
-                                        <span class="text-sm font-medium text-primary">{{ skill.name }}</span>
-                                    </div>
-                                </div>
-                            {% elif forloop.counter0 == 1 %}
-                                {# Medium brick #}
-                                <div class="col-span-2 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-4 relative group"
-                                     data-skill="{{ skill.name|lower }}"
-                                     style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
-                                    <div class="flex flex-col items-center justify-center h-full text-center">
-                                        <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
-                                    </div>
-                                </div>
-                            {% elif forloop.counter0 == 2 %}
-                                {# Small brick #}
-                                <div class="col-span-1 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-3 relative group"
-                                     data-skill="{{ skill.name|lower }}"
-                                     style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
-                                    <div class="flex flex-col items-center justify-center h-full text-center">
-                                        <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
-                                    </div>
-                                </div>
-                            {% elif forloop.counter0 == 3 %}
-                                {# Tall brick #}
-                                <div class="col-span-1 row-span-2 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-4 relative group"
-                                     data-skill="{{ skill.name|lower }}"
-                                     style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
-                                    <div class="flex flex-col items-center justify-center h-full text-center">
-                                        <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
-                                    </div>
-                                </div>
-                            {% elif forloop.counter0 == 4 %}
-                                {# Wide brick #}
-                                <div class="col-span-2 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-4 relative group"
-                                     data-skill="{{ skill.name|lower }}"
-                                     style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
-                                    <div class="flex flex-col items-center justify-center h-full text-center">
-                                        <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
-                                    </div>
-                                </div>
-                            {% else %}
-                                {# Default small brick for remaining skills #}
-                                <div class="col-span-1 skill-brick border-2 border-dashed border-primary-300 rounded-lg p-3 relative group"
-                                     data-skill="{{ skill.name|lower }}"
-                                     style="border-radius: 0.5rem; border-style: dashed; stroke-dasharray: 5; stroke-linecap: round;">
-                                    <div class="flex flex-col items-center justify-center h-full text-center">
-                                        <span class="text-xs font-medium text-primary">{{ skill.name }}</span>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
             {% endif %}
         </div>
     </section>
@@ -499,33 +507,43 @@
                  data-aos-duration="1000"
                  data-aos-delay="300"
                  class="flex flex-col gap-2 w-full">
-                <a href="{% url 'core:project_detail' pk=latest_project.id slug=latest_project.slug %}"
-                   class="relative h-[75vh] aspect-16 bg-white focus:border-none active:border-none outline-none focus:outline-none">
-                    <img src="{{ latest_project.cover_image.url }}" alt="{{ latest_project.title }}"
-                         class="w-full h-full object-cover grayscale contrast-125 blur-sm">
+                {% if latest_project %}
+                    <a href="{% url 'core:project_detail' pk=latest_project.id slug=latest_project.slug %}"
+                       class="relative h-[75vh] aspect-16 bg-white focus:border-none active:border-none outline-none focus:outline-none">
+                        <img src="{{ latest_project.cover_image.url }}" alt="{{ latest_project.title }}"
+                             class="w-full h-full object-cover grayscale contrast-125 blur-sm">
 
-                    <img src="{{ latest_project.cover_image.url }}" alt="{{ latest_project.title }}"
-                         class="absolute w-1/3 max-w-64 2xl:max-w-96 right-[10%] top-1/3 object-contain contrast-125 rotate-3 border-8 border-white shadow-xl rounded-2xl">
-                </a>
-                <div class="flex items-center justify-start p-8">
-                    <div class="w-full flex flex-col gap-1">
-                        <h4 class="stroked-text">{{ latest_project.title }}</h4>
-                        <div class="flex items-center justify-start gap-2 text-greyColor">
-                            <p>{{ latest_project.created_at|month_year }}</p>
-                            <div class="size-1 bg-greyColor rounded-full"></div>
-                            <p>
-                                {% if latest_project.get_read_time > 1 %}
-                                    {{ latest_project.get_read_time }} mins read
-                                {% else %}
-                                    {{ latest_project.get_read_time }} min read
-                                {% endif %}
-                            </p>
-                            <div class="size-1 bg-greyColor rounded-full"></div>
-                            <p>{{ latest_project.time_since_created }}</p>
+                        <img src="{{ latest_project.cover_image.url }}" alt="{{ latest_project.title }}"
+                             class="absolute w-1/3 max-w-64 2xl:max-w-96 right-[10%] top-1/3 object-contain contrast-125 rotate-3 border-8 border-white shadow-xl rounded-2xl">
+                    </a>
+                    <div class="flex items-center justify-start p-8">
+                        <div class="w-full flex flex-col gap-1">
+                            <h4 class="stroked-text">{{ latest_project.title }}</h4>
+                            <div class="flex items-center justify-start gap-2 text-greyColor">
+                                <p>{{ latest_project.created_at|month_year }}</p>
+                                <div class="size-1 bg-greyColor rounded-full"></div>
+                                <p>
+                                    {% if latest_project.get_read_time > 1 %}
+                                        {{ latest_project.get_read_time }} mins read
+                                    {% else %}
+                                        {{ latest_project.get_read_time }} min read
+                                    {% endif %}
+                                </p>
+                                <div class="size-1 bg-greyColor rounded-full"></div>
+                                <p>{{ latest_project.time_since_created }}</p>
+                            </div>
+                        </div>
+                        {% include 'components/icons/arrow-top-right.html' %}
+                    </div>
+                {% else %}
+                    {# Empty state for latest project #}
+                    <div class="relative h-[75vh] aspect-16 border-2 border-dashed border-gray-300 bg-gray-50/30 rounded-lg flex items-center justify-center">
+                        <div class="text-center text-gray-500">
+                            <h3 class="text-xl mb-2">No Projects Yet</h3>
+                            <p>Come back soon to see what I've been building!</p>
                         </div>
                     </div>
-                    {% include 'components/icons/arrow-top-right.html' %}
-                </div>
+                {% endif %}
             </div>
 
             {% if featured_projects >= 4 %}
