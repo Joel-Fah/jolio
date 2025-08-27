@@ -25,6 +25,8 @@ DATABASES = {
 }
 
 SITE_URL = os.getenv('SITE_URL')
+SITE_NAME = os.getenv('SITE_NAME', 'Jolio')
+DEFAULT_META_DESCRIPTION = os.getenv('DEFAULT_META_DESCRIPTION', "Joel Fah's Personal Portfolio and Blog")
 
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(" ")
 
@@ -50,6 +52,7 @@ STORAGES = {
             "bucket_name": os.environ.get("SUPABASE_S3_BUCKET_NAME"),
             "region_name": os.environ.get("SUPABASE_S3_REGION_NAME"),
             "endpoint_url": os.environ.get("SUPABASE_S3_ENDPOINT_URL"),
+            "location": "media",
         },
     },
 }
