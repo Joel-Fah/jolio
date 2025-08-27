@@ -33,11 +33,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
+    'django.contrib.sitemaps',
 
     # Tailwind
     'tailwind',
     'theme',
-    'django_browser_reload',
 ]
 
 MIDDLEWARE = [
@@ -170,5 +170,9 @@ UNFOLD = {
             900: '38,33,142',
             950: '24,19,83',
         }
-    }
+    },
+    'STYLES': [
+        lambda request: static("unfold/fonts/inter/styles.css"),
+        lambda request: static("unfold/fonts/material-symbols/styles.css"),
+    ]
 }
