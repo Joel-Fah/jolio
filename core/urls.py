@@ -14,4 +14,7 @@ urlpatterns = [
 
     # Achievements URLs
     path('diaries/', AchievementsView.as_view(), name='achievements'),
+
+    # About
+    path('journey/', AboutView.as_view(), name='about'),
 ]

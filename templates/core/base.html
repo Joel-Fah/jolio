@@ -12,8 +12,8 @@
     {% endblock %}
 
     {# Tailwind CSS #}
-    {% tailwind_css %}
-    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
+    {% tailwind_preload_css v='' %}
+    {% tailwind_css v='' %}
 
     {# AOS CSS #}
     <link href="{% static 'aos/aos.css' %}" rel="stylesheet">

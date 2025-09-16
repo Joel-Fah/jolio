@@ -8,6 +8,10 @@ from core.utils import time_since
 
 
 # Create your models here.
+class Update(models.Model):
+    is_available_for_work = models.BooleanField(default=True, help_text="Is the user available for work?")
+    updated_at = models.DateTimeField(auto_now=True, help_text="Last update timestamp")
+
 
 class Project(models.Model):
     """
@@ -209,6 +213,7 @@ class Achievement(models.Model):
     def __str__(self):
         return self.title
 
+
 class Skill(models.Model):
     """
     Represents a skill with a name and optional description.
@@ -229,3 +234,43 @@ class Skill(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Story(models.Model):
+    # Basic Information
+    title = models.CharField(max_length=200, help_text="Main story title")
+    subtitle = models.CharField(max_length=300, blank=True, help_text="Optional subtitle or tagline")
+    content = models.TextField(help_text="Main story content")
+    image = models.ImageField(upload_to="stories/", blank=True, null=True, help_text="Optional story image")
+
+    # Timeline Information
+    period = models.CharField(max_length=100, help_text="Time period (e.g., '2020-2023', 'Early 2024')")
+
+    # Relations
+    parent = models.ForeignKey(
+        "self",
+        null=True,
+        blank=True,
+        related_name="substories",
+        on_delete=models.CASCADE,
+        help_text="Optional parent story if this is a sub-topic"
+    )
+
+    # Metadata
+    is_published = models.BooleanField(default=True, help_text="Publish this story")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "Story"
+        verbose_name_plural = "Stories"
+
+    def __str__(self):
+        prefix = "[ Parent ] " if self.is_root else ""
+        return f"{prefix}{self.title}"
+
+    @property
+    def is_root(self):
+        """Check if this is a top-level story (main topic)."""
+        return self.parent is None

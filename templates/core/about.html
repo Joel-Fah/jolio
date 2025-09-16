@@ -1,0 +1,215 @@
+{% extends 'core/base.html' %}
+{% load static i18n %}
+{% load tailwind_tags get_month_year %}
+
+{% block title %}
+    The so far long journey of things that happened
+{% endblock %}
+
+{% block extra_styles %}
+<style>
+    .timeline-circle {
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: visible;
+    }
+
+    .timeline-circle.rotated {
+        transform: rotate(90deg);
+    }
+
+    .timeline-circle .period-text {
+        white-space: nowrap;
+    }
+
+    .timeline-circle.rotated .period-text {
+        max-width: 100px;
+        height: auto;
+        overflow: clip;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+    {# Hero Section #}
+    <section id="hero" class="w-full max-h-[calc(100vh-64px)] h-svh p-8">
+        <div class="flex flex-col gap-4 items-center max-w-screen-lg m-auto h-full justify-center text-center">
+            <div data-aos="fade-up" data-aos-anchor-placement="top-center" data-aos-duration="1000"
+                 class="flex flex-col gap-4 items-center justify-center">
+                <img src="{% static 'core/images/hero_dash.png' %}" alt="My manaja dash"
+                     class="w-1/3 select-none pointer-events-none">
+                <h1>About <span class="italic">(Because Every Site Has One)</span></h1>
+                <p class="text-greyColor max-w-xl">
+                    Hi, I'm Joel — designer of interfaces, builder of apps, survivor of Flutter headaches. Still
+                    figuring things out, but hey, progress looks good so far.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {# Timeline Section #}
+    <section id="timeline" class="relative w-[calc(100%-64px)] max-w-screen-lg mx-auto my-12">
+        {% if stories %}
+            <div class="relative flex">
+                {# Timeline thread (continuous) #}
+                <div class="w-px bg-primary-300 absolute top-0 bottom-0 left-8"></div>
+
+                <div class="flex-1 space-y-16">
+                    {% for story in stories %}
+                        <div id="story-{{ story.id }}" class="relative">
+                            {# Sticky Circle #}
+                            <button class="timeline-circle flex items-center gap-1 top-4 sticky ml-6 my-4 z-20 size-5 rounded-full bg-[#ececec] outline outline-[#ececec] border border-primary-400 hover:scale-110 transition"
+                                    data-target="story-{{ story.id }}">
+                                <span class="ml-6 my-4 z-20 size-5 w-full rounded-full"></span>
+                                <span class="period-text text-sm text-primary-400 italic whitespace-nowrap px-2 rounded-full bg-[#ececec] outline outline-[#ececec]">{{ story.period }}</span>
+                            </button>
+
+                            {# Main Story Card #}
+                            <div class="bg-white rounded-3xl shadow p-6 pl-16">
+                                <h3 class="">{{ story.title }}</h3>
+                                {% if story.subtitle %}
+                                    <p class="text-greyColor italic text-sm">{{ story.subtitle }}</p>
+                                {% endif %}
+                                <div class="mt-4 prose max-w-none">
+                                    {{ story.content|safe }}
+                                </div>
+                                {% if story.image %}
+                                    <div class="mt-4">
+                                        <img src="{{ story.image.url }}" alt="{{ story.title }}"
+                                             class="rounded-xl max-h-96 w-full object-cover grayscale contrast-125">
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            {# Sub-stories (indented, continuous sub-thread) #}
+                            {% if story.published_substories %}
+                                <div class="relative ml-8 pl-8">
+                                    {# Sub-timeline thread #}
+                                    <div class="w-px bg-primary-300 absolute -top-8 bottom-0 left-20"></div>
+
+                                    <div class="space-y-10 mt-8">
+                                        {% for sub in story.published_substories %}
+                                            <div id="sub-{{ sub.id }}" class="relative">
+                                                {# Sub-circle #}
+                                                <button class="timeline-circle flex items-center gap-1 top-12 sticky ml-[42px] my-4 z-20 size-4 rounded-full bg-[#ececec] outline outline-[#ececec] border border-primary-400 hover:scale-110 transition"
+                                                        data-target="sub-{{ sub.id }}">
+                                                    <span class="ml-6 my-4 z-20 size-4 w-full rounded-full"></span>
+                                                    <span class="period-text text-sm text-primary-400 italic whitespace-nowrap  px-2 rounded-full bg-[#ececec] outline outline-[#ececec]">{{ sub.period }}</span>
+                                                </button>
+
+                                                {# Sub-story Card #}
+                                                <div class="bg-primary-50 rounded-3xl p-5 pl-14 ml-4">
+                                                    <h4 class="">{{ sub.title }}</h4>
+                                                    {% if sub.subtitle %}
+                                                        <p class="text-greyColor italic text-sm">{{ sub.subtitle }}</p>
+                                                    {% endif %}
+                                                    <div class="mt-2 prose max-w-none">
+                                                        {{ sub.content|safe }}
+                                                    </div>
+                                                    {% if sub.image %}
+                                                        <div class="mt-2">
+                                                            <img src="{{ sub.image.url }}" alt="{{ sub.title }}"
+                                                                 class="rounded-xl max-h-52 w-full object-cover grayscale contrast-125">
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            {# Empty Projects Section #}
+            {% include 'components/empty.html' with label="Nothing to see here yet — just me, overthinking how the whole story comes up together. Check back later, maybe I’ll have figured it out." %}
+        {% endif %}
+    </section>
+
+
+    {% include 'components/footer.html' %}
+{% endblock %}
+
+{% block javascript %}
+    {#    <script>#}
+    {#        document.addEventListener("DOMContentLoaded", () => {#}
+    {#            document.querySelectorAll(".timeline-circle").forEach(circle => {#}
+    {#                circle.addEventListener("click", () => {#}
+    {#                    const targetId = circle.getAttribute("data-target");#}
+    {#                    const target = document.getElementById(targetId);#}
+    {#                    if (target) {#}
+    {#                        const yOffset = targetId.startsWith("sub-") ? -40 : -20;#}
+    {#                        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;#}
+    {#                        window.scrollTo({top: y, behavior: "smooth"});#}
+    {#                    }#}
+    {#                });#}
+    {#            });#}
+    {#        });#}
+    {#    </script>#}
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const circles = document.querySelectorAll(".timeline-circle");
+
+        // Handle circle clicks
+        circles.forEach(circle => {
+            circle.addEventListener("click", () => {
+                const targetId = circle.getAttribute("data-target");
+                const target = document.getElementById(targetId);
+                if (target) {
+                    const yOffset = targetId.startsWith("sub-") ? -40 : -20;
+                    const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({top: y, behavior: "smooth"});
+                }
+            });
+        });
+
+        // Handle button rotation on scroll
+        function handleButtonRotation() {
+            circles.forEach((circle) => {
+                const rect = circle.getBoundingClientRect();
+
+                // Get the associated card
+                const targetId = circle.getAttribute("data-target");
+                const card = document.getElementById(targetId);
+
+                if (card) {
+                    const cardRect = card.getBoundingClientRect();
+                    const cardTop = cardRect.top;
+                    const cardBottom = cardRect.bottom;
+
+                    // Check if card is in viewport and circle is sticky
+                    const isCardVisible = cardTop < window.innerHeight && cardBottom > 0;
+                    const isCircleSticky = rect.top <= (targetId.startsWith("sub-") ? 48 : 16);
+
+                    if (isCardVisible && isCircleSticky) {
+                        circle.classList.add('rotated');
+                    } else {
+                        circle.classList.remove('rotated');
+                    }
+                }
+            });
+        }
+
+        // Throttled scroll handler
+        let ticking = false;
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    handleButtonRotation();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', onScroll);
+        handleButtonRotation(); // Initial check
+    });
+</script>
+
+{% endblock %}

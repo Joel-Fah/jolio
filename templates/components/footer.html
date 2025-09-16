@@ -7,7 +7,11 @@
         </h2>
         <p class="text-greyColor">
             I am introvert, but I am social. Special in my kind &
-            <span class="text-primary underline">available to make magic</span>.
+            {% if is_available_to_work %}
+                <span class="text-primary underline">available to make magic</span>.
+            {% else %}
+                <span class="text-primary underline">already making magic elsewhere</span>.
+            {% endif %}
         </p>
     </div>
 </footer>
