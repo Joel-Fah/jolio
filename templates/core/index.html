@@ -20,7 +20,7 @@
                     class="flex flex-col gap-4 items-start justify-center">
                 <h1 class="max-w-sm me-auto">Is this another boring & minimalistic portfolio website?</h1>
                 <div class="flex items-center justify-center gap-4 text-greyColor">
-                    <p class="px-4 py-1 border border-greyColor rounded-full">yes, but this one's <span
+                    <p class="px-4 py-1 border border-greyColor rounded-full">maybe..., but this one's <span
                             class="text-primary underline">mine</span></p>
                     <p>v3.0.1</p>
                 </div>
@@ -350,7 +350,12 @@
                             No matter what, I’ll always find a way to make people draw their best smile line... I find
                             joy in doing that.
                         </blockquote>
-                        <h4 class="mt-2">Yours genuinely!</h4>
+
+                        <div class="mt-2 space-y-2">
+                            {% url 'core:about' as about_url %}
+                            <h4 class="">Yours genuinely!</h4>
+                            {% include 'components/buttons/primary-button.html' with label="There's more of this journey" url=about_url %}
+                        </div>
                     </div>
                 </div>
             </div>
