@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
 from django.db import models
 from django.contrib.auth.models import User, Group
-from unfold.admin import ModelAdmin, TabularInline
+from unfold.admin import ModelAdmin, TabularInline, StackedInline
 from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 from unfold.contrib.forms.widgets import WysiwygWidget
 
@@ -102,7 +102,7 @@ class SkillAdmin(ModelAdmin):
     }
 
 
-class SubStoryInline(TabularInline):  # or StackedInline if you want bigger forms
+class SubStoryInline(StackedInline):  # or StackedInline if you want bigger forms
     model = Story
     fk_name = "parent"  # important: tell Django which FK to use
     extra = 1  # how many empty forms to show by default

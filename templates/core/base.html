@@ -24,24 +24,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap" rel="stylesheet">
 
     {# Extra styles #}
-    <style>
-        @media (max-width: 1024px) {
-            .desktop-only {
-                display: none !important;
-            }
-        }
-
-        @media (min-width: 1025px) {
-            .mobile-tablet-only {
-                display: none !important;
-            }
-        }
-    </style>
+    <link href="{% static 'core/css/styles.css' %}" rel="stylesheet">
     {% block extra_styles %}
 
     {% endblock %}
 </head>
 <body class="">
+<div id="page-transition"
+     class="fixed inset-0  bg-white z-[999999] pointer-events-none w-full flex flex-col gap-2 items-center justify-center">
+    <span class="text-xl italic text-greyColor animate-pulse">Getting there...</span>
+    <span class="loader"></span>
+</div>
+
 {# Mobile/Tablet Message #}
 <div class="mobile-tablet-only min-h-screen flex items-center justify-center bg-gray-50 px-6">
     <div class="text-center max-w-md">
@@ -64,6 +58,7 @@
     </div>
 </div>
 
+
 {# Desktop Content #}
 <div class="desktop-only">
     {# Navigation #}
@@ -85,16 +80,15 @@
 </div>
 
 {# Javascript #}
+{# Transition Js #}
+<script src="{% static 'core/js/page-transition.js' %}">
+</script>
+
 <script src="{% static 'aos/aos.js' %}"></script>
-<script>
+<script defer>
     AOS.init({
         once: true,
     });
-</script>
-
-{# Preloader Js #}
-<script>
-
 </script>
 {% block javascript %}
 

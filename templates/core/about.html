@@ -7,28 +7,28 @@
 {% endblock %}
 
 {% block extra_styles %}
-<style>
-    .timeline-circle {
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        overflow: visible;
-    }
+    <style>
+        .timeline-circle {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: visible;
+        }
 
-    .timeline-circle.rotated {
-        transform: rotate(90deg);
-    }
+        .timeline-circle.rotated {
+            transform: rotate(90deg);
+        }
 
-    .timeline-circle .period-text {
-        white-space: nowrap;
-    }
+        .timeline-circle .period-text {
+            white-space: nowrap;
+        }
 
-    .timeline-circle.rotated .period-text {
-        max-width: 100px;
-        height: auto;
-        overflow: clip;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-</style>
+        .timeline-circle.rotated .period-text {
+            max-width: 100px;
+            height: auto;
+            overflow: clip;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
 {% endblock %}
 
 
@@ -38,7 +38,7 @@
         <div class="flex flex-col gap-4 items-center max-w-screen-lg m-auto h-full justify-center text-center">
             <div data-aos="fade-up" data-aos-anchor-placement="top-center" data-aos-duration="1000"
                  class="flex flex-col gap-4 items-center justify-center">
-                <img src="{% static 'core/images/hero_dash.png' %}" alt="My manaja dash"
+                <img src="{% static 'core/images/journey_dash.png' %}" alt="My manaja dash"
                      class="w-1/3 select-none pointer-events-none">
                 <h1>About <span class="italic">(Because Every Site Has One)</span></h1>
                 <p class="text-greyColor max-w-xl">
@@ -61,13 +61,16 @@
                         <div id="story-{{ story.id }}" class="relative">
                             {# Sticky Circle #}
                             <button class="timeline-circle flex items-center gap-1 top-4 sticky ml-6 my-4 z-20 size-5 rounded-full bg-[#ececec] outline outline-[#ececec] border border-primary-400 hover:scale-110 transition"
-                                    data-target="story-{{ story.id }}">
+                                    data-target="story-{{ story.id }}" title="{{ story.period }}">
                                 <span class="ml-6 my-4 z-20 size-5 w-full rounded-full"></span>
                                 <span class="period-text text-sm text-primary-400 italic whitespace-nowrap px-2 rounded-full bg-[#ececec] outline outline-[#ececec]">{{ story.period }}</span>
                             </button>
 
                             {# Main Story Card #}
-                            <div class="bg-white rounded-3xl shadow p-6 pl-16">
+                            <div
+                                    data-aos="fade-up" data-aos-anchor-placement="top-center" data-aos-duration="1000"
+                                    data-aos-delay="100"
+                                    class="bg-white rounded-3xl shadow-xl p-6 pl-16">
                                 <h3 class="">{{ story.title }}</h3>
                                 {% if story.subtitle %}
                                     <p class="text-greyColor italic text-sm">{{ story.subtitle }}</p>
@@ -94,7 +97,7 @@
                                             <div id="sub-{{ sub.id }}" class="relative">
                                                 {# Sub-circle #}
                                                 <button class="timeline-circle flex items-center gap-1 top-12 sticky ml-[42px] my-4 z-20 size-4 rounded-full bg-[#ececec] outline outline-[#ececec] border border-primary-400 hover:scale-110 transition"
-                                                        data-target="sub-{{ sub.id }}">
+                                                        data-target="sub-{{ sub.id }}" title="{{ sub.period }}">
                                                     <span class="ml-6 my-4 z-20 size-4 w-full rounded-full"></span>
                                                     <span class="period-text text-sm text-primary-400 italic whitespace-nowrap  px-2 rounded-full bg-[#ececec] outline outline-[#ececec]">{{ sub.period }}</span>
                                                 </button>
@@ -130,86 +133,83 @@
         {% endif %}
     </section>
 
+    {# End divider #}
+    <div class="flex items-center justify-center gap-2 my-8 max-w-screen-lg m-auto">
+        <svg class="flex-1 h-2" viewBox="0 0 100 4" preserveAspectRatio="none" fill="none">
+            <path d="M0,2 Q5,0 10,2 T20,2 T30,2 T40,2 T50,2 T60,2 T70,2 T80,2 T90,2 T100,2" stroke="currentColor"
+                  stroke-width="0.5" class="text-greyColor"/>
+        </svg>
+        <span class="text-greyColor text-sm px-4">It's in fact here, the whooole journey begins!</span>
+        <svg class="flex-1 h-2" viewBox="0 0 100 4" preserveAspectRatio="none" fill="none">
+            <path d="M0,2 Q5,0 10,2 T20,2 T30,2 T40,2 T50,2 T60,2 T70,2 T80,2 T90,2 T100,2" stroke="currentColor"
+                  stroke-width="0.5" stroke-linecap="round" class="text-greyColor"/>
+        </svg>
+    </div>
 
     {% include 'components/footer.html' %}
 {% endblock %}
 
 {% block javascript %}
-    {#    <script>#}
-    {#        document.addEventListener("DOMContentLoaded", () => {#}
-    {#            document.querySelectorAll(".timeline-circle").forEach(circle => {#}
-    {#                circle.addEventListener("click", () => {#}
-    {#                    const targetId = circle.getAttribute("data-target");#}
-    {#                    const target = document.getElementById(targetId);#}
-    {#                    if (target) {#}
-    {#                        const yOffset = targetId.startsWith("sub-") ? -40 : -20;#}
-    {#                        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;#}
-    {#                        window.scrollTo({top: y, behavior: "smooth"});#}
-    {#                    }#}
-    {#                });#}
-    {#            });#}
-    {#        });#}
-    {#    </script>#}
-
     <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const circles = document.querySelectorAll(".timeline-circle");
+        document.addEventListener("DOMContentLoaded", () => {
+            const circles = document.querySelectorAll(".timeline-circle");
 
-        // Handle circle clicks
-        circles.forEach(circle => {
-            circle.addEventListener("click", () => {
-                const targetId = circle.getAttribute("data-target");
-                const target = document.getElementById(targetId);
-                if (target) {
-                    const yOffset = targetId.startsWith("sub-") ? -40 : -20;
-                    const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                    window.scrollTo({top: y, behavior: "smooth"});
-                }
-            });
-        });
-
-        // Handle button rotation on scroll
-        function handleButtonRotation() {
-            circles.forEach((circle) => {
-                const rect = circle.getBoundingClientRect();
-
-                // Get the associated card
-                const targetId = circle.getAttribute("data-target");
-                const card = document.getElementById(targetId);
-
-                if (card) {
-                    const cardRect = card.getBoundingClientRect();
-                    const cardTop = cardRect.top;
-                    const cardBottom = cardRect.bottom;
-
-                    // Check if card is in viewport and circle is sticky
-                    const isCardVisible = cardTop < window.innerHeight && cardBottom > 0;
-                    const isCircleSticky = rect.top <= (targetId.startsWith("sub-") ? 48 : 16);
-
-                    if (isCardVisible && isCircleSticky) {
-                        circle.classList.add('rotated');
-                    } else {
-                        circle.classList.remove('rotated');
+            // Handle circle clicks
+            circles.forEach(circle => {
+                circle.addEventListener("click", () => {
+                    const targetId = circle.getAttribute("data-target");
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        const yOffset = targetId.startsWith("sub-") ? -60 : -20;
+                        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        window.scrollTo({top: y, behavior: "smooth"});
                     }
-                }
-            });
-        }
-
-        // Throttled scroll handler
-        let ticking = false;
-        function onScroll() {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    handleButtonRotation();
-                    ticking = false;
                 });
-                ticking = true;
-            }
-        }
+            });
 
-        window.addEventListener('scroll', onScroll);
-        handleButtonRotation(); // Initial check
-    });
-</script>
+            // Handle button rotation on scroll
+            function handleButtonRotation() {
+                circles.forEach((circle) => {
+                    const rect = circle.getBoundingClientRect();
+
+                    // Get the associated card
+                    const targetId = circle.getAttribute("data-target");
+                    const card = document.getElementById(targetId);
+
+                    if (card) {
+                        const cardRect = card.getBoundingClientRect();
+                        const cardTop = cardRect.top;
+                        const cardBottom = cardRect.bottom;
+
+                        // Check if card is in viewport and circle is sticky
+                        const isCardVisible = cardTop < window.innerHeight && cardBottom > 0;
+                        const isCircleSticky = rect.top <= (targetId.startsWith("sub-") ? 48 : 16);
+
+                        if (isCardVisible && isCircleSticky) {
+                            circle.classList.add('rotated');
+                        } else {
+                            circle.classList.remove('rotated');
+                        }
+                    }
+                });
+            }
+
+            // Throttled scroll handler
+            let ticking = false;
+
+            function onScroll() {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        handleButtonRotation();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener('scroll', onScroll);
+            handleButtonRotation(); // Initial check
+        });
+    </script>
 
 {% endblock %}
