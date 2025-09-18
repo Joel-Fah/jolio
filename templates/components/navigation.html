@@ -1,180 +1,226 @@
 {% load static %}
 
 {% with request.resolver_match.url_name as url_name %}
-<!-- Navigation Component -->
-<nav class="fixed inset-0 pointer-events-none z-40">
-    <!-- Right Sidebar -->
-    <div data-aos="fade-left"
-         data-aos-anchor-placement="top-center"
-         data-aos-duration="1000"
-         data-aos-delay="100"
-         class="absolute right-0 top-0 h-full w-16 pointer-events-auto">
-        <div class="flex flex-col items-center justify-end h-full bg-white">
-            <!-- Navigation Icons -->
-            <div class="flex flex-col gap-6 mb-20">
-                <!-- Home -->
-                <div class="relative group">
+    <!-- Navigation Component -->
+    <nav class="fixed inset-0 pointer-events-none z-40">
+        <!-- Right Sidebar -->
+        <div data-aos="fade-left"
+             data-aos-anchor-placement="top-center"
+             data-aos-duration="1000"
+             data-aos-delay="100"
+             class="absolute right-0 top-0 h-full w-16 pointer-events-auto">
+            <div class="flex flex-col items-center justify-end h-full bg-white">
+                <!-- Navigation Icons -->
+                <div class="flex flex-col gap-6 mb-20">
+                    <!-- Home -->
+                    <div class="relative group">
+                        <a href="{% if url_name == 'home' %}#top{% else %}{% url 'core:home' %}{% endif %}"
+                           class="{% if url_name == 'home' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                                 color="#2b2b2b" fill="none">
+                                <path d="M18 20C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4"
+                                      stroke="currentColor"
+                                      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 6.84771V17.1523C4 18.7454 4 19.542 4.4645 20.0976C4.92899 20.6531 5.71415 20.7956 7.28446 21.0806L10.2845 21.6251C12.4701 22.0217 13.563 22.2201 14.2815 21.6215C15 21.023 15 19.9142 15 17.6968V6.30325C15 4.08578 15 2.97704 14.2815 2.37849C13.563 1.77994 12.4701 1.97827 10.2845 2.37495L7.28446 2.91941C5.71415 3.2044 4.92899 3.34689 4.4645 3.90244C4 4.45799 4 5.25457 4 6.84771Z"
+                                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                                <path d="M11.5 11.9983L11.5 11.9883" stroke="currentColor" stroke-width="2"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <!-- Tooltip -->
+                        <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                            <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
+                                <span class="text-primary-300 italic">not my</span> home
+                            </div>
+                            <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
+                        </div>
+                    </div>
+
+                    <!-- Projects (Dids) -->
+                    <div class="relative group">
+                        <a href="{% if url_name == 'projects' %}#top{% else %}{% url 'core:projects' %}{% endif %}"
+                           class="{% if url_name == 'projects' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                                 color="#2b2b2b" fill="none">
+                                color="#2b2b2b" fill="none">
+                                <path d="M22 14V10C22 6.22876 22 4.34315 20.8284 3.17157C19.6569 2 17.7712 2 14 2H12C8.22876 2 6.34315 2 5.17157 3.17157C4 4.34315 4 6.22876 4 10V14C4 17.7712 4 19.6569 5.17157 20.8284C6.34315 22 8.22876 22 12 22H14C17.7712 22 19.6569 22 20.8284 20.8284C22 19.6569 22 17.7712 22 14Z"
+                                      stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M5 6L2 6M5 12H2M5 18H2" stroke="currentColor" stroke-width="1.5"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                                <path d="M17.5 7L13.5 7M15.5 11H13.5" stroke="currentColor" stroke-width="1.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 22L9 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                            <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
+                                <span class="text-primary-300 italic">did some</span> projects
+                            </div>
+                            <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
+                        </div>
+                    </div>
+
+                    <!-- Achievements -->
+                    <div class="relative group">
+                        <a href="{% if url_name == 'achievements' %}#top{% else %}{% url 'core:achievements' %}{% endif %}"
+                           class="{% if url_name == 'achievements' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                                 color="#2b2b2b" fill="none">
+                                <path d="M5.07579 17C4.08939 4.54502 12.9123 1.0121 19.9734 2.22417C20.2585 6.35185 18.2389 7.89748 14.3926 8.61125C15.1353 9.38731 16.4477 10.3639 16.3061 11.5847C16.2054 12.4534 15.6154 12.8797 14.4355 13.7322C11.8497 15.6004 8.85421 16.7785 5.07579 17Z"
+                                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                      stroke-linejoin="round"></path>
+                                <path d="M4 22C4 15.5 7.84848 12.1818 10.5 10" stroke="currentColor" stroke-width="1.5"
+                                      stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </a>
+                        <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                            <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
+                                <span class="text-primary-300 italic">involved into</span> this & that
+                            </div>
+                            <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
+                        </div>
+                    </div>
+
+                    <!-- About -->
+                    <div class="relative group">
+                        <a href="{% if url_name == 'about' %}#top{% else %}{% url 'core:about' %}{% endif %}"
+                           class="{% if url_name == 'about' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                                 color="#2b2b2b" fill="none">
+                                <
+                                <path d="M10.9999 22L19 2H7.00002L9.49994 6.5L4.99994 11H11.9999" stroke="currentColor"
+                                      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </a>
+                        <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                            <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
+                                <span class="text-primary-300 italic">the long</span> journey
+                            </div>
+                            <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation Bar -->
+        <div class="absolute bottom-0 left-0 right-0 h-16 pointer-events-auto">
+            <div class="flex items-center justify-between h-full bg-white px-3">
+                <!-- Left section -->
+                <div class="flex items-center gap-4">
+                    <span
+                            data-aos="fade-up"
+                            data-aos-anchor-placement="top-center"
+                            data-aos-duration="1000"
+                            data-aos-delay="1000"
+                            class="text-xs text-greyColor">
+                         &copy;{{ copyright_year }} - joelfah - All rights reserved.
+                    </span>
+                    <div data-aos="fade-up"
+                         data-aos-anchor-placement="top-center"
+                         data-aos-duration="1000"
+                         data-aos-delay="900"
+                         class="flex items-center justify-center gap-2 px-4 py-1.5 rounded-full {% if is_available_for_work %} bg-green-100 text-green-600 {% else %} bg-primary-100 text-primary-600 {% endif %}">
+                        <div class="w-1.5 h-1.5 rounded-full ring ring-offset-2 {% if is_available_for_work %} bg-green-500 ring-green-300 animate-pulse {% else %} bg-primary-500 ring-primary-300 {% endif %}"></div>
+                        <span class="text-sm">{% if is_available_for_work %}Available for work{% else %}Not available
+                            right now{% endif %}</span>
+                    </div>
+                    <a href="{% static 'core/files/cv_joelfah_uix.pdf' %}"
+                       data-aos="fade-up"
+                         data-aos-anchor-placement="top-center"
+                         data-aos-duration="1000"
+                         data-aos-delay="800"
+                       class="flex items-center justify-center gap-1 bg-blue-100 text-blue-600 text-sm px-3 py-1.5 rounded-full"
+                       download>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none"
+                             class="size-4">
+                            <path d="M20.4999 10.5V10C20.4999 6.22876 20.4999 4.34315 19.3284 3.17157C18.1568 2 16.2712 2 12.4999 2H11.5C7.72883 2 5.84323 2 4.67166 3.17156C3.50009 4.34312 3.50007 6.22872 3.50004 9.99993L3.5 14.5C3.49997 17.7874 3.49996 19.4312 4.40788 20.5375C4.57412 20.7401 4.75986 20.9258 4.96242 21.0921C6.06877 22 7.71249 22 10.9999 22"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            <path d="M7.5 7H16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            <path d="M7.5 12H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            <path d="M20.5 20L20.5 17C20.5 15.5706 19.1569 14 17.5 14C15.8431 14 14.5 15.5706 14.5 17L14.5 20.5C14.5 21.3284 15.1716 22 16 22C16.8284 22 17.5 21.3284 17.5 20.5V17"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                        </svg>
+                        exp.CV
+                    </a>
+                </div>
+
+                <!-- Right section -->
+                <div class="flex items-center gap-8">
+                    <a href="https://wa.me/237656997810?text=Hi%20Joel%2C%20just%20dropping%20by%20to%20say%20hi%20and%20see%20if%20we%20can%20connect%20or%20cook%20something%20together."
+                       target="_blank"
+                       data-aos="fade-up"
+                       data-aos-anchor-placement="top-center"
+                       data-aos-duration="1000"
+                       data-aos-delay="700"
+                       class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                        +(237) 656 997 810
+                        <span class="block text-xs text-primary-400">Say yo!</span>
+                    </a>
+                    <a href="mailto:joelfah2003@gmail.com?subject=Hello%20Joel%2C%20let%27s%20connect%20and%20see%20what%20we%20can%20build%20together"
+                       target="_blank"
+                       data-aos="fade-up"
+                       data-aos-anchor-placement="top-center"
+                       data-aos-duration="1000"
+                       data-aos-delay="600"
+                       class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                        joelfah2003@gmail.com
+                        <span class="block text-xs text-primary-400">Say hello (pro style)</span>
+                    </a>
+                    <a href="https://github.com/Joel-Fah" target="_blank"
+                       data-aos="fade-up"
+                       data-aos-anchor-placement="top-center"
+                       data-aos-duration="1000"
+                       data-aos-delay="500"
+                       class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                        Joel-Fah
+                        <span class="block text-xs text-primary-400">GitHub</span>
+                    </a>
+                    <a href="https://x.com/FahDejon" target="_blank"
+                       data-aos="fade-up"
+                       data-aos-anchor-placement="top-center"
+                       data-aos-duration="1000"
+                       data-aos-delay="400"
+                       class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                        @FahDejon
+                        <span class="block text-xs text-primary-400">X.com (<span
+                                class="line-through">Twitter</span>)</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/joelfah" target="_blank"
+                       data-aos="fade-up"
+                       data-aos-anchor-placement="top-center"
+                       data-aos-duration="1000"
+                       data-aos-delay="300"
+                       class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                        in/joelfah
+                        <span class="block text-xs text-primary-400">LinkedIn</span>
+                    </a>
+                    <a href="https://www.figma.com/@joelfah" target="_blank"
+                       data-aos="fade-up"
+                       data-aos-anchor-placement="top-center"
+                       data-aos-duration="1000"
+                       data-aos-delay="200"
+                       class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
+                        @joelfah
+                        <span class="block text-xs text-primary-400">Figma</span>
+                    </a>
                     <a href="{% if url_name == 'home' %}#top{% else %}{% url 'core:home' %}{% endif %}"
-                       class="{% if url_name == 'home' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
-                             color="#2b2b2b" fill="none">
-                            <path d="M18 20C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4"
-                                  stroke="currentColor"
-                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M4 6.84771V17.1523C4 18.7454 4 19.542 4.4645 20.0976C4.92899 20.6531 5.71415 20.7956 7.28446 21.0806L10.2845 21.6251C12.4701 22.0217 13.563 22.2201 14.2815 21.6215C15 21.023 15 19.9142 15 17.6968V6.30325C15 4.08578 15 2.97704 14.2815 2.37849C13.563 1.77994 12.4701 1.97827 10.2845 2.37495L7.28446 2.91941C5.71415 3.2044 4.92899 3.34689 4.4645 3.90244C4 4.45799 4 5.25457 4 6.84771Z"
-                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                  stroke-linejoin="round"/>
-                            <path d="M11.5 11.9983L11.5 11.9883" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                       data-aos="fade-up"
+                       data-aos-anchor-placement="top-center"
+                       data-aos-duration="1000"
+                       data-aos-delay="100"
+                       class="flex items-center justify-center size-11 rounded-full hover:bg-primary-100 transition-colors duration-200">
+                        <img src="{% static 'core/images/pfp.jpg' %}" alt="face" class="size-8 rounded-full">
                     </a>
-                    <!-- Tooltip -->
-                    <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                        <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
-                            <span class="text-primary-300 italic">not my</span> home
-                        </div>
-                        <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
-                    </div>
-                </div>
-
-                <!-- Projects (Dids) -->
-                <div class="relative group">
-                    <a href="{% if url_name == 'projects' %}#top{% else %}{% url 'core:projects' %}{% endif %}"
-                       class="{% if url_name == 'projects' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
-                             color="#2b2b2b" fill="none">
-                             color="#2b2b2b" fill="none">
-                            <path d="M22 14V10C22 6.22876 22 4.34315 20.8284 3.17157C19.6569 2 17.7712 2 14 2H12C8.22876 2 6.34315 2 5.17157 3.17157C4 4.34315 4 6.22876 4 10V14C4 17.7712 4 19.6569 5.17157 20.8284C6.34315 22 8.22876 22 12 22H14C17.7712 22 19.6569 22 20.8284 20.8284C22 19.6569 22 17.7712 22 14Z"
-                                  stroke="currentColor" stroke-width="1.5"/>
-                            <path d="M5 6L2 6M5 12H2M5 18H2" stroke="currentColor" stroke-width="1.5"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"/>
-                            <path d="M17.5 7L13.5 7M15.5 11H13.5" stroke="currentColor" stroke-width="1.5"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M9 22L9 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                  stroke-linejoin="round"/>
-                        </svg>
-                    </a>
-                    <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                        <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
-                            <span class="text-primary-300 italic">did some</span> projects
-                        </div>
-                        <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
-                    </div>
-                </div>
-
-                <!-- Achievements -->
-                <div class="relative group">
-                    <a href="{% if url_name == 'achievements' %}#top{% else %}{% url 'core:achievements' %}{% endif %}"
-                       class="{% if url_name == 'achievements' %}bg-primary-100{% endif %} flex items-center justify-center w-10 h-10 rounded-xl hover:bg-primary-100 transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
-                             color="#2b2b2b" fill="none">
-                            <path d="M5.07579 17C4.08939 4.54502 12.9123 1.0121 19.9734 2.22417C20.2585 6.35185 18.2389 7.89748 14.3926 8.61125C15.1353 9.38731 16.4477 10.3639 16.3061 11.5847C16.2054 12.4534 15.6154 12.8797 14.4355 13.7322C11.8497 15.6004 8.85421 16.7785 5.07579 17Z"
-                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                  stroke-linejoin="round"></path>
-                            <path d="M4 22C4 15.5 7.84848 12.1818 10.5 10" stroke="currentColor" stroke-width="1.5"
-                                  stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </a>
-                    <div class="absolute right-full mr-5 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                        <div class="bg-primary-800 text-whiteColor text-sm px-2 py-1 rounded-lg whitespace-nowrap">
-                            <span class="text-primary-300 italic">involved into</span> this & that
-                        </div>
-                        <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Bottom Navigation Bar -->
-    <div class="absolute bottom-0 left-0 right-0 h-16 pointer-events-auto">
-        <div class="flex items-center justify-between h-full bg-white px-3">
-            <!-- Left section -->
-            <div class="flex items-center gap-4">
-                <span
-                        data-aos="fade-up"
-                        data-aos-anchor-placement="top-center"
-                        data-aos-duration="1000"
-                        data-aos-delay="900"
-                        class="text-xs text-greyColor">&copy;2025 - joelfah - All rights reserved.</span>
-                <div data-aos="fade-up"
-                     data-aos-anchor-placement="top-center"
-                     data-aos-duration="1000"
-                     data-aos-delay="800"
-                     class="flex items-center justify-center gap-2 bg-green-100 px-4 py-1.5 rounded-full text-green-600">
-                    <div class="w-1.5 h-1.5 bg-green-500 rounded-full ring ring-offset-2 ring-green-300 animate-pulse"></div>
-                    <span class="text-sm">Available for work</span>
-                </div>
-            </div>
-
-            <!-- Right section -->
-            <div class="flex items-center gap-8">
-                <a href="https://wa.me/237656997810?text=Hi%20Joel%2C%20just%20dropping%20by%20to%20say%20hi%20and%20see%20if%20we%20can%20connect%20or%20cook%20something%20together." target="_blank"
-                   data-aos="fade-up"
-                   data-aos-anchor-placement="top-center"
-                   data-aos-duration="1000"
-                   data-aos-delay="700"
-                   class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
-                    +(237) 656 997 810
-                    <span class="block text-xs text-primary-400">Say yo!</span>
-                </a>
-                <a href="mailto:joelfah2003@gmail.com?subject=Hello%20Joel%2C%20let%27s%20connect%20and%20see%20what%20we%20can%20build%20together" target="_blank"
-                   data-aos="fade-up"
-                   data-aos-anchor-placement="top-center"
-                   data-aos-duration="1000"
-                   data-aos-delay="600"
-                   class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
-                    joelfah2003@gmail.com
-                    <span class="block text-xs text-primary-400">Say hello (pro style)</span>
-                </a>
-                <a href="https://github.com/Joel-Fah" target="_blank"
-                   data-aos="fade-up"
-                   data-aos-anchor-placement="top-center"
-                   data-aos-duration="1000"
-                   data-aos-delay="500"
-                   class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
-                    Joel-Fah
-                    <span class="block text-xs text-primary-400">GitHub</span>
-                </a>
-                <a href="https://x.com/FahDejon" target="_blank"
-                   data-aos="fade-up"
-                   data-aos-anchor-placement="top-center"
-                   data-aos-duration="1000"
-                   data-aos-delay="400"
-                   class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
-                    @FahDejon
-                    <span class="block text-xs text-primary-400">X.com (<span
-                            class="line-through">Twitter</span>)</span>
-                </a>
-                <a href="https://www.linkedin.com/in/joelfah" target="_blank"
-                   data-aos="fade-up"
-                   data-aos-anchor-placement="top-center"
-                   data-aos-duration="1000"
-                   data-aos-delay="300"
-                   class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
-                    in/joelfah
-                    <span class="block text-xs text-primary-400">LinkedIn</span>
-                </a>
-                <a href="https://www.figma.com/@joelfah" target="_blank"
-                   data-aos="fade-up"
-                   data-aos-anchor-placement="top-center"
-                   data-aos-duration="1000"
-                   data-aos-delay="200"
-                   class="flex flex-col text-sm text-primary-700 hover:text-primary-900 transition-colors duration-200">
-                    @joelfah
-                    <span class="block text-xs text-primary-400">Figma</span>
-                </a>
-                <a href="{% if url_name == 'home' %}#top{% else %}{% url 'core:home' %}{% endif %}"
-                   data-aos="fade-up"
-                   data-aos-anchor-placement="top-center"
-                   data-aos-duration="1000"
-                   data-aos-delay="100"
-                   class="flex items-center justify-center size-11 rounded-full hover:bg-primary-100 transition-colors duration-200">
-                    <img src="{% static 'core/images/pfp.jpg' %}" alt="face" class="size-8 rounded-full">
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>
+    </nav>
 {% endwith %}

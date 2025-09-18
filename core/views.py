@@ -1,11 +1,13 @@
+from django.db.models import Prefetch
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
-from .models import Project, Achievement, Skill
+from .models import Project, Achievement, Skill, Story
+from .mixins import CommonContextMixin
 
 
 # Create your views here.
 
-class HomeView(TemplateView):
+class HomeView(TemplateView, CommonContextMixin):
     template_name = 'core/index.html'
 
     def get_context_data(self, **kwargs):
@@ -19,11 +21,10 @@ class HomeView(TemplateView):
             featured_projects_queryset = featured_projects_queryset.exclude(id=latest_project.id)
         context['featured_projects'] = featured_projects_queryset[:4]
         context['skills'] = Skill.objects.all().filter(is_published=True).order_by('name')
-
         return context
 
 
-class ProjectsView(ListView):
+class ProjectsView(ListView, CommonContextMixin):
     template_name = 'core/projects/projects.html'
     model = Project
     context_object_name = 'projects'
@@ -35,7 +36,7 @@ class ProjectsView(ListView):
         return queryset.filter(is_published=True)
 
 
-class ProjectDetailView(DetailView):
+class ProjectDetailView(DetailView, CommonContextMixin):
     template_name = 'core/projects/project_details.html'
     model = Project
     context_object_name = 'project'
@@ -56,7 +57,7 @@ class ProjectDetailView(DetailView):
         return context
 
 
-class AchievementsView(ListView):
+class AchievementsView(ListView, CommonContextMixin):
     template_name = 'core/achievements.html'
     model = Achievement
     context_object_name = 'achievements'
@@ -67,6 +68,27 @@ class AchievementsView(ListView):
         queryset = super().get_queryset().prefetch_related('tags')
         return queryset.filter(is_published=True)
 
+
+class AboutView(TemplateView, CommonContextMixin):
+    template_name = 'core/about.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Only fetch published root stories
+        root_qs = Story.objects.filter(parent__isnull=True, is_published=True).order_by('-created_at')
+
+        # Prefetch only published children (direct substories) into `published_substories`
+        stories = root_qs.prefetch_related(
+            Prefetch(
+                'substories',
+                queryset=Story.objects.filter(is_published=True).order_by('created_at'),
+                to_attr='published_substories'
+            )
+        )
+
+        context['stories'] = stories
+        return context
 
 # State views
 def handler404(request, exception):
