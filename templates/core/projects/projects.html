@@ -99,7 +99,7 @@
 
                                 {# Project Description #}
                                 <div class="text-greyColor my-6 line-clamp-3">
-                                    {{ project.description|safe }}
+                                    {{ project.description|safe|striptags }}
                                 </div>
 
                                 {# Project Tags #}

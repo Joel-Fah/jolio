@@ -415,9 +415,9 @@
         const galleryImages = [
             {% for md in media %}
                 {
-                    src: "{{ md.image.url }}",
-                    alt: "{{ md.caption|default:project.title }}",
-                    caption: "{{ md.caption|default:'' }}"
+                    src: "{{ md.image.url|escapejs }}",
+                    alt: "{{ md.caption|default:project.title|escapejs }}",
+                    caption: "{{ md.caption|default:''|escapejs }}"
                 }{% if not forloop.last %},{% endif %}
             {% endfor %}
         ];
