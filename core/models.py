@@ -10,6 +10,7 @@ from core.utils import time_since
 # Create your models here.
 class Update(models.Model):
     is_available_for_work = models.BooleanField(default=True, help_text="Is the user available for work?")
+    resume = models.FileField(upload_to='resumes/', null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, help_text="Last update timestamp")
 
 

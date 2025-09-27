@@ -12,4 +12,5 @@ class CommonContextMixin(ContextMixin):
         context = super().get_context_data(**kwargs)
         context['is_available_for_work'] = Update.objects.last().is_available_for_work if Update.objects.exists() else False
         context['copyright_year'] = datetime.now().year
+        context['resume_url'] = Update.objects.last().resume.url if Update.objects.exists() and Update.objects.last().resume else None
         return context
