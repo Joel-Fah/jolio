@@ -7,6 +7,66 @@
     Achievements, Experiences, Random Brags (aka This & That)
 {% endblock %}
 
+{% block extra_styles %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        ul li {
+            list-style: disc;
+            margin-left: 1rem;
+            text-indent: 0 !important;
+        }
+
+        .achievement-description b,
+        .achievement-description strong {
+            all: unset;
+            -webkit-text-stroke-width: 0.5px;
+            -webkit-text-stroke-color: #2b2b2b;
+        }
+
+        .achievement-description a,
+        .achievement-description a strong,
+        .achievement-description a b {
+            all: unset;
+            color: #1d4ed8;
+            cursor: pointer;
+            margin: 1px 4px;
+            padding: 1px;
+            background: rgba(217, 227, 250);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-description a:hover,
+        .achievement-description a strong:hover,
+        .achievement-description a b:hover {
+            color: #2563eb;
+            background: rgb(191, 210, 252);
+        }
+
+        .achievement-description blockquote {
+            border: 2px #d1d5db;
+            border-style: dashed;
+            border-radius: 20px;
+            margin-left: 0;
+            color: #6b7280;
+            font-style: italic;
+            padding: 1.5rem;
+        }
+
+        .achievement-description pre {
+            font-family: "JetBrains Mono", monospace;
+            background: #e5e5e5;
+            border-radius: 20px;
+            padding: 1rem 0;
+            font-size: medium;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
     <section id="hero" class="w-[calc(100%-64px)] max-h-[calc(100vh-64px)] h-svh p-8">
         <div class="flex flex-col gap-4 items-center max-w-screen-lg m-auto h-full justify-center text-center">
@@ -112,13 +172,23 @@
                                 </h3>
 
                                 {# Event date #}
-                                {% if achievement.event_date %}
+                                {% if achievement.event_start_date and not achievement.event_end_date %}
                                     <div class="text-sm text-green-500 mb-4">
-                                        happened around {{ achievement.event_date|month_year }}
+                                        Happened around {{ achievement.event_start_date|month_year }}
+                                    </div>
+
+                                    {% elif not achievement.event_start_date and achievement.event_end_date %}
+                                    <div class="text-sm text-green-500 mb-4">
+                                        Happened around {{ achievement.event_end_date|month_year }}
+                                    </div>
+
+                                    {% elif achievement.event_start_date and achievement.event_end_date %}
+                                    <div class="text-sm text-green-500 mb-4">
+                                        Went from {{ achievement.event_start_date }} to {{ achievement.event_end_date }}
                                     </div>
                                 {% endif %}
 
-                                <div class="prose prose-gray max-w-none text-gray-700 mb-4">
+                                <div class="achievement-description prose prose-gray max-w-none mb-4">
                                     {{ achievement.content|safe }}
                                 </div>
 

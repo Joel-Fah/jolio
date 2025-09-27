@@ -42,6 +42,7 @@ class Project(models.Model):
         CONTRACT = "contract", "Contract"
         COMMUNITY = "community", "Community"
         OPEN_SOURCE = "open_source", "Open Source"
+        HACKATHON = "hackathon", "Hackathon"
 
     class Category(models.TextChoices):
         DESIGN = "design", "Design"
@@ -172,7 +173,7 @@ class Achievement(models.Model):
         image (ImageField): An optional image associated with the achievement.
         tags (ManyToManyField): Tags associated with the achievement.
         link (URLField): Optional link for more information about the achievement.
-        event_date (DateField): Date of the event related to the achievement, if applicable.
+        event_start_date (DateField): Date of the event related to the achievement, if applicable.
         created_at (DateTimeField): The date and time when the achievement was created.
         updated_at (DateField): The date when the achievement was last updated.
         is_published (bool): Whether the achievement is visible on the site.
@@ -183,26 +184,33 @@ class Achievement(models.Model):
     image = models.ImageField(upload_to="achievements/", blank=True, null=True)
     tags = models.ManyToManyField(Tag, blank=True, related_name="achievements")
     link = models.URLField(blank=True, null=True)
-    event_date = models.DateField(blank=True, null=True)
+    event_start_date = models.DateField(blank=True, null=True)
+    event_end_date = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, help_text="Achievement last update date")
     is_published = models.BooleanField(default=True, help_text="Is the achievement visible on the site?")
 
     class Meta:
-        ordering = ["-created_at", "-event_date"]
+        ordering = ["-created_at", "-event_start_date"]
 
     def time_since_created(self):
         """Return human-readable time since project was created."""
         return time_since(self.created_at)
 
     def time_since_updated(self):
-        """Return human-readable time since project was last updated."""
+        """Return human-readable time since achievement was last updated."""
         return time_since(self.updated_at)
 
-    def time_since_event(self):
-        """Return human-readable time since the event date."""
-        if self.event_date:
-            return time_since(self.event_date)
+    def time_since_event_started(self):
+        """Return human-readable time since the event started."""
+        if self.event_start_date:
+            return time_since(self.event_start_date)
+        return "N/A"
+
+    def time_since_event_ended(self):
+        """Return human-readable time since event was ended."""
+        if self.event_end_date:
+            return time_since(self.event_end_date)
         return "N/A"
 
     def save(self, *args, **kwargs):
