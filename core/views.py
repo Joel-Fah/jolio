@@ -62,7 +62,7 @@ class AchievementsView(ListView, CommonContextMixin):
     model = Achievement
     context_object_name = 'achievements'
     paginate_by = 10
-    ordering = ['-created_at', '-event_date']
+    ordering = ['-created_at', '-event_start_date']
 
     def get_queryset(self):
         queryset = super().get_queryset().prefetch_related('tags')

@@ -120,6 +120,8 @@
                                 {% include 'components/icons/community.html' with attributes="" %}
                             {% elif project.project_type == 'open_source' %}
                                 {% include 'components/icons/open-source.html' with attributes="" %}
+                            {% elif project.project_type == 'hackathon' %}
+                                {% include 'components/icons/hackathon.html' with attributes="size-4" %}
                             {% else %}
                                 {% include 'components/icons/personal.html' with attributes="" %}
                             {% endif %}

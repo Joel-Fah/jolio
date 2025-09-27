@@ -46,6 +46,8 @@ class ProjectAdmin(ModelAdmin):
         models.TextField: {'widget': WysiwygWidget},
     }
 
+    filter_horizontal = ['tags']
+
 
 @admin.register(ProjectMedia)
 class ProjectMediaAdmin(ModelAdmin):
@@ -78,16 +80,18 @@ class ProjectTagAdmin(ModelAdmin):
 
 @admin.register(Achievement)
 class AchievementAdmin(ModelAdmin):
-    list_display = ['title', 'event_date', 'is_published', 'created_at']
+    list_display = ['title', 'event_start_date', 'event_end_date', 'is_published', 'created_at']
     search_fields = ['title', 'content']
-    list_filter = ['is_published', 'event_date', 'created_at']
-    ordering = ['-created_at', '-event_date']
+    list_filter = ['is_published', 'event_start_date', 'event_end_date', 'created_at']
+    ordering = ['-created_at', '-event_start_date']
 
     readonly_fields = ['slug', 'created_at', 'updated_at']
 
     formfield_overrides = {
         models.TextField: {'widget': WysiwygWidget},
     }
+
+    filter_horizontal = ['tags']
 
 
 @admin.register(Skill)
