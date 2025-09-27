@@ -15,7 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("a").forEach(anchor => {
         anchor.addEventListener("click", (e) => {
             const href = anchor.getAttribute("href");
-            if (!href || href.startsWith("#") || href.startsWith("javascript:") || anchor.hasAttribute("download")) return;
+            if (
+                !href ||
+                href.startsWith("#") ||
+                href.startsWith("javascript:") ||
+                anchor.hasAttribute("download") ||
+                anchor.hasAttribute("target")
+            ) return;
 
             e.preventDefault();
 
